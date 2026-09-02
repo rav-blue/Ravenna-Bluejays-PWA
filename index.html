@@ -1,0 +1,950 @@
+<!--
+================================================================================
+                    RAVENNA BLUEJAYS PORTAL LINK CONFIGURATION
+================================================================================
+To modify or update any button links in the future, edit the target URLs listed
+below or update the DATA_CONFIG object inside the <script> block at the bottom of
+this file.
+
+1. District Calendar (calendar icon):
+   - Target URL: https://www.gobound.com/widgets/74d59a606dec43c2bd7d#target=_system
+
+2. Menu (food icon):
+   - Target URL: https://calendar.google.com/calendar/embed?src=ravennabluejays.org_uhkvu6jui8m6btfrnuv3bim7c4%40group.calendar.google.com&ctz=America%2FChicago&mode=AGENDA
+
+3. Infinite Campus (IC icon - Subgrid):
+   - IC - Student  (backpack icon):            https://ravennane.infinitecampus.org/campus/portal/students/ravenna.jsp#target=_system
+   - IC - Guardian (mom and dad icon):         https://ravennane.infinitecampus.org/campus/portal/parents/ravenna.jsp#target=_system
+   - IC - Staff    (staff icon):               https://ravennane.infinitecampus.org/campus/staff/ravenna.jsp#target=_system
+
+4. Social Media (social media icon - Subgrid):
+   - Facebook   (facebook icon):               https://www.facebook.com/Ravenna-Public-Schools-110516212342459#target=_system
+   - Instagram  (instagram icon):              https://www.instagram.com/ravennabluejays/#target=_system
+   - X(Twitter) (X icon):                      https://x.com/ravennabluejays#target=_system
+
+5. Parent Resources (Parents icon - Subgrid):
+   - Parent Links (link icon):                 https://www.ravennabluejays.org/parent-resources/parent-links#target=_system
+   - PSA          (megaphone view side icon):  https://www.ravennabluejays.org/parent-resources/psa#target=_system
+   - School Forms (paper icon):                https://www.ravennabluejays.org/parent-resources/school-forms#target=_system
+   - For Sale     (money / cash icon):         https://www.ravennabluejays.org/district/for-sale#target=_system
+
+6. Handbooks (book icon):
+   - Target URL: https://www.ravennabluejays.org/high-school/student-handbooks#target=_system
+
+7. Staff Directory (contact icon - Subgrid):
+   - District Staff    (commercial building icon): https://docs.google.com/spreadsheets/d/e/2PACX-1vQyMMLHIGK5F7Gb2-toeXEPG9Lr8h4KfcadS1TbNnHs00mIxFAXfSvA03_-eeAD5KfLaLOWeOBlppOQ/pubhtml#target=_system
+   - Elementary Staff  (stick figure kid icon):    https://docs.google.com/spreadsheets/d/e/2PACX-1vS0hQ4L22rYazmk1aFdRzMy1Wx1a53WPX7nfObYtTjVjtUOsLAtwyYkG3yHgwKjx1DMPZvuFw2OtxQJ/pubhtml#target=_system
+   - High School Staff (graduation cap icon):      https://docs.google.com/spreadsheets/d/e/2PACX-1vRdkPaDH_7NquNjOFrXDcaETLf2dFS7mffjQzf-kVAPge8hMy0bIFgju-hixiTz6kYGN72IooLY8Jcf/pubhtml#target=_system
+
+8. Call Us (phone icon - Subgrid):
+   - Elementary Phone  (stick figure kid icon):    tel:3084523202
+   - High School Phone (graduation cap icon):      tel:3084523249
+
+9. Streaming (Youtube icon - Subgrid):
+   - Youtube - All Events (Youtube icon):      https://www.youtube.com/channel/UCRFh-8YE3WDDfgt_xZ1or4A#target=_system
+   - Hudl - Athletics ONLY (sports icon):      https://fan.hudl.com/usa/ne/ravenna/organization/174/ravenna-high-school#target=_system
+   - NFHS (subscription)  (NFHS icon):         https://www.nfhsnetwork.com/schools/ravenna-high-school-ravenna-ne#target=_system
+================================================================================
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <title>Ravenna Bluejays</title>
+  
+  <!-- PWA & Mobile Capabilities -->
+  <link rel="manifest" href="/manifest.json" />
+  <meta name="theme-color" content="#0a1936" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Ravenna Bluejays" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" href="/icon-192.png" />
+
+  <style>
+    /* Reset & Base Styles */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow-x: hidden;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: #050e21;
+      color: #ffffff;
+      touch-action: manipulation;
+    }
+
+    /* Full-Screen Deep Blue Background Image */
+    body {
+      background: 
+        radial-gradient(circle at 50% 15%, rgba(22, 60, 138, 0.82) 0%, rgba(10, 25, 54, 0.95) 60%, rgba(4, 11, 26, 1) 100%),
+        url('/logo.jpg') no-repeat center 25% / 120% opacity 0.06;
+      background-attachment: fixed;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      position: relative;
+    }
+
+    /* Decorative Background Mesh Glows */
+    .bg-glow-1 {
+      position: fixed;
+      top: -100px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 420px;
+      height: 420px;
+      background: radial-gradient(circle, rgba(29, 90, 212, 0.45) 0%, rgba(13, 27, 62, 0) 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .bg-glow-2 {
+      position: fixed;
+      bottom: -150px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(16, 52, 130, 0.35) 0%, rgba(5, 14, 33, 0) 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* App Container */
+    #app-container {
+      width: 100%;
+      max-width: 480px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      padding: max(16px, env(safe-area-inset-top)) 16px max(20px, env(safe-area-inset-bottom)) 16px;
+      z-index: 1;
+      position: relative;
+    }
+
+    /* Splash Screen */
+    #splash-screen {
+      position: fixed;
+      inset: 0;
+      background: #050e21;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.4s ease-out, visibility 0.4s ease-out;
+    }
+
+    #splash-screen.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .splash-logo-wrap {
+      position: relative;
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.08);
+      border: 2px solid rgba(255, 255, 255, 0.25);
+      padding: 8px;
+      box-shadow: 0 0 35px rgba(22, 80, 210, 0.6);
+      animation: pulse-glow 2s infinite ease-in-out;
+    }
+
+    .splash-logo-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      border-radius: 50%;
+    }
+
+    @keyframes pulse-glow {
+      0%, 100% { box-shadow: 0 0 25px rgba(22, 80, 210, 0.4); transform: scale(1); }
+      50% { box-shadow: 0 0 45px rgba(45, 120, 255, 0.8); transform: scale(1.03); }
+    }
+
+    .splash-title {
+      margin-top: 24px;
+      font-size: 1.6rem;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      color: #ffffff;
+      text-transform: uppercase;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    .splash-sub {
+      margin-top: 6px;
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.7);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .splash-loader {
+      margin-top: 32px;
+      width: 140px;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 4px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .splash-loader-bar {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, #1d61e8, #60a5fa);
+      animation: load-bar 1.2s infinite ease-in-out;
+      transform-origin: left;
+    }
+
+    @keyframes load-bar {
+      0% { transform: scaleX(0); }
+      50% { transform: scaleX(0.7); }
+      100% { transform: scaleX(1); }
+    }
+
+    /* Top Title Header */
+    header {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 8px;
+      margin-bottom: 22px;
+      text-align: center;
+    }
+
+    .header-logo-badge {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1.5px solid rgba(255, 255, 255, 0.3);
+      padding: 5px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4), inset 0 0 15px rgba(255, 255, 255, 0.1);
+      margin-bottom: 12px;
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+
+    .header-logo-badge:active {
+      transform: scale(0.95);
+    }
+
+    .header-logo-badge img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      border-radius: 50%;
+    }
+
+    .header-title {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: #ffffff;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
+      line-height: 1.1;
+    }
+
+    .header-subtitle {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #93c5fd;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-top: 4px;
+      opacity: 0.9;
+    }
+
+    /* PWA Install Button */
+    .pwa-install-btn {
+      display: none;
+      align-items: center;
+      gap: 6px;
+      margin-top: 10px;
+      padding: 6px 14px;
+      background: rgba(29, 97, 232, 0.4);
+      border: 1px solid rgba(147, 197, 253, 0.4);
+      border-radius: 20px;
+      color: #ffffff;
+      font-size: 0.75rem;
+      font-weight: 600;
+      cursor: pointer;
+      backdrop-filter: blur(8px);
+      transition: all 0.2s ease;
+    }
+
+    .pwa-install-btn:active {
+      background: rgba(29, 97, 232, 0.7);
+      transform: scale(0.96);
+    }
+
+    /* Main View Area */
+    .view-container {
+      width: 100%;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Sub-Grid Top Nav Bar */
+    .subgrid-nav {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 18px;
+      padding: 10px 14px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 14px;
+      backdrop-filter: blur(12px);
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      color: #ffffff;
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .back-btn:active {
+      background: rgba(255, 255, 255, 0.3);
+      transform: scale(0.95);
+    }
+
+    .subgrid-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #ffffff;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* Clean 3x3 Grid Layout */
+    .grid-3x3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    /* Grid Button Card */
+    .grid-card {
+      aspect-ratio: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 6px;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1.5px solid rgba(255, 255, 255, 0.18);
+      border-radius: 18px;
+      color: #ffffff;
+      text-decoration: none;
+      cursor: pointer;
+      user-select: none;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: transform 0.18s cubic-bezier(0.2, 0.8, 0.2, 1), background-color 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .grid-card:hover {
+      background: rgba(255, 255, 255, 0.14);
+      border-color: rgba(255, 255, 255, 0.35);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    }
+
+    .grid-card:active {
+      transform: scale(0.93);
+      background: rgba(255, 255, 255, 0.22);
+      border-color: rgba(255, 255, 255, 0.5);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    }
+
+    /* Stacked Clean White Icon */
+    .grid-icon {
+      width: 32px;
+      height: 32px;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 8px;
+      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+      flex-shrink: 0;
+    }
+
+    .grid-icon svg {
+      width: 100%;
+      height: 100%;
+      stroke: #ffffff;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      fill: none;
+    }
+
+    /* Stacked Clean White Text Label */
+    .grid-label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: #ffffff;
+      line-height: 1.2;
+      word-break: break-word;
+      hyphens: auto;
+      max-width: 100%;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+    }
+
+    /* Subgrid Badge Indicator */
+    .subgrid-badge {
+      position: absolute;
+      top: 6px;
+      right: 6px;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #60a5fa;
+      box-shadow: 0 0 6px #60a5fa;
+    }
+
+    /* Text Below Grid */
+    .motto-section {
+      margin-top: 24px;
+      text-align: center;
+      padding: 0 8px;
+    }
+
+    .motto-primary {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: 0.3px;
+      line-height: 1.45;
+      text-transform: uppercase;
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+      margin-bottom: 6px;
+    }
+
+    .motto-secondary {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: #93c5fd;
+      line-height: 1.4;
+    }
+
+    .motto-secondary a {
+      color: #ffffff;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      font-weight: 600;
+      transition: color 0.2s ease;
+    }
+
+    .motto-secondary a:hover {
+      color: #60a5fa;
+    }
+
+    /* Toast Notification Overlay */
+    .toast {
+      position: fixed;
+      bottom: max(24px, env(safe-area-inset-bottom));
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: rgba(10, 25, 54, 0.95);
+      border: 1px solid rgba(147, 197, 253, 0.4);
+      color: #ffffff;
+      padding: 10px 20px;
+      border-radius: 30px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(16px);
+      z-index: 9000;
+      opacity: 0;
+      transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      pointer-events: none;
+    }
+
+    .toast.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+
+    /* Animation Transitions */
+    .fade-enter {
+      animation: fadeIn 0.25s ease-out forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px) scale(0.98); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    /* Footer */
+    footer {
+      margin-top: auto;
+      padding-top: 20px;
+      padding-bottom: 8px;
+      text-align: center;
+      font-size: 0.75rem;
+      color: rgba(255, 255, 255, 0.55);
+      letter-spacing: 0.5px;
+    }
+
+    /* Larger Screen Adjustments */
+    @media (min-width: 480px) {
+      .grid-3x3 {
+        gap: 16px;
+      }
+      .grid-card {
+        padding: 14px 8px;
+        border-radius: 20px;
+      }
+      .grid-icon {
+        width: 36px;
+        height: 36px;
+        margin-bottom: 10px;
+      }
+      .grid-label {
+        font-size: 0.85rem;
+      }
+      .motto-primary {
+        font-size: 0.92rem;
+      }
+      .motto-secondary {
+        font-size: 0.85rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background Decorative Glows -->
+  <div class="bg-glow-1"></div>
+  <div class="bg-glow-2"></div>
+
+  <!-- Splash / Loading Screen -->
+  <div id="splash-screen">
+    <div class="splash-logo-wrap">
+      <img src="/logo.jpg" alt="Ravenna Bluejays Mascot" />
+    </div>
+    <div class="splash-title">Ravenna Bluejays</div>
+    <div class="splash-sub">School Portal</div>
+    <div class="splash-loader">
+      <div class="splash-loader-bar"></div>
+    </div>
+  </div>
+
+  <!-- App Wrapper -->
+  <div id="app-container">
+
+    <!-- Top Title Header -->
+    <header>
+      <div class="header-logo-badge" id="logo-header-btn">
+        <img src="/logo.jpg" alt="Ravenna Bluejays Logo" />
+      </div>
+      <h1 class="header-title">Ravenna Bluejays</h1>
+      <div class="header-subtitle">School Portal</div>
+      <button id="pwa-install-btn" class="pwa-install-btn">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        <span>Install App</span>
+      </button>
+    </header>
+
+    <!-- Main Dynamic Grid View Area -->
+    <div id="view-area" class="view-container">
+      <!-- Grid views rendered dynamically via JavaScript -->
+    </div>
+
+    <!-- Below the Grid Text Section -->
+    <div class="motto-section">
+      <p class="motto-primary">Preparing Students Today to Succeed Tomorrow. FAMILY - COMMUNITY - SCHOOL</p>
+      <p class="motto-secondary">Additional information can be found on our website - <a href="https://www.ravennabluejays.org#target=_system" target="_blank" rel="noopener noreferrer">ravennabluejays.org</a></p>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      Ravenna Public Schools &bull; Official Mobile Portal
+    </footer>
+
+  </div>
+
+  <!-- Toast Feedback Overlay -->
+  <div id="toast" class="toast">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
+    <span id="toast-msg">Opening link...</span>
+  </div>
+
+  <!-- Embedded JavaScript Logic -->
+  <script>
+    /*
+    ============================================================================
+                        PORTAL DATA CONFIGURATION OBJECT
+    ============================================================================
+    Modify target URLs or add new buttons in this central config object.
+    */
+    const DATA_CONFIG = {
+      mainGrid: [
+        {
+          id: "calendar",
+          title: "District Calendar",
+          icon: `<svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>`,
+          url: "https://www.gobound.com/widgets/74d59a606dec43c2bd7d#target=_system"
+        },
+        {
+          id: "menu",
+          title: "Menu",
+          icon: `<svg viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7 6 13 6 13s6-6 6-13z"/><path d="M12 2v6"/><path d="M7 2v4"/><path d="M17 2v4"/></svg>`,
+          url: "https://calendar.google.com/calendar/embed?src=ravennabluejays.org_uhkvu6jui8m6btfrnuv3bim7c4%40group.calendar.google.com&ctz=America%2FChicago&mode=AGENDA"
+        },
+        {
+          id: "infinite_campus",
+          title: "Infinite Campus",
+          icon: `<svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 2 6 3 6 3s6-1 6-3v-5"/></svg>`,
+          hasSubgrid: true,
+          items: [
+            {
+              title: "IC - Student",
+              icon: `<svg viewBox="0 0 24 24"><path d="M4 10a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V10z"/><path d="M9 6V4a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="8" y1="16" x2="16" y2="16"/></svg>`,
+              url: "https://ravennane.infinitecampus.org/campus/portal/students/ravenna.jsp#target=_system"
+            },
+            {
+              title: "IC - Guardian",
+              icon: `<svg viewBox="0 0 24 24"><circle cx="8" cy="7" r="3"/><circle cx="16" cy="7" r="3"/><path d="M2 20v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/><path d="M14 20v-2a4 4 0 0 1 4-4h2a4 4 0 0 1 4 4v2"/></svg>`,
+              url: "https://ravennane.infinitecampus.org/campus/portal/parents/ravenna.jsp#target=_system"
+            },
+            {
+              title: "IC - Staff",
+              icon: `<svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 11l-3 3-2-2"/></svg>`,
+              url: "https://ravennane.infinitecampus.org/campus/staff/ravenna.jsp#target=_system"
+            }
+          ]
+        },
+        {
+          id: "social_media",
+          title: "Social Media",
+          icon: `<svg viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>`,
+          hasSubgrid: true,
+          items: [
+            {
+              title: "Facebook",
+              icon: `<svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>`,
+              url: "https://www.facebook.com/Ravenna-Public-Schools-110516212342459#target=_system"
+            },
+            {
+              title: "Instagram",
+              icon: `<svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>`,
+              url: "https://www.instagram.com/ravennabluejays/#target=_system"
+            },
+            {
+              title: "X (Twitter)",
+              icon: `<svg viewBox="0 0 24 24"><path d="M4 4l11.733 16h4.267l-11.733 -16z"/><path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772"/></svg>`,
+              url: "https://x.com/ravennabluejays#target=_system"
+            }
+          ]
+        },
+        {
+          id: "parent_resources",
+          title: "Parent Resources",
+          icon: `<svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>`,
+          hasSubgrid: true,
+          items: [
+            {
+              title: "Parent Links",
+              icon: `<svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>`,
+              url: "https://www.ravennabluejays.org/parent-resources/parent-links#target=_system"
+            },
+            {
+              title: "PSA",
+              icon: `<svg viewBox="0 0 24 24"><path d="M3 11l13-6v14L3 13V11z"/><path d="M11.6 16.8l2.9 4.2a1 1 0 0 0 1.6-1.2l-2.2-3.3"/><path d="M19 8a5 5 0 0 1 0 8"/></svg>`,
+              url: "https://www.ravennabluejays.org/parent-resources/psa#target=_system"
+            },
+            {
+              title: "School Forms",
+              icon: `<svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>`,
+              url: "https://www.ravennabluejays.org/parent-resources/school-forms#target=_system"
+            },
+            {
+              title: "For Sale",
+              icon: `<svg viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2"/><path d="M6 12h.01M18 12h.01"/></svg>`,
+              url: "https://www.ravennabluejays.org/district/for-sale#target=_system"
+            }
+          ]
+        },
+        {
+          id: "handbooks",
+          title: "Handbooks",
+          icon: `<svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>`,
+          url: "https://www.ravennabluejays.org/high-school/student-handbooks#target=_system"
+        },
+        {
+          id: "staff_directory",
+          title: "Staff Directory",
+          icon: `<svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="23" y2="8"/><line x1="19" y1="12" x2="23" y2="12"/><line x1="19" y1="16" x2="23" y2="16"/></svg>`,
+          hasSubgrid: true,
+          items: [
+            {
+              title: "District Staff",
+              icon: `<svg viewBox="0 0 24 24"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v8h4"/><path d="M18 9h2a2 2 0 0 1 2 2v11h-4"/><path d="M10 6h4"/><path d="M10 10h4"/><path d="M10 14h4"/><path d="M10 18h4"/></svg>`,
+              url: "https://docs.google.com/spreadsheets/d/e/2PACX-1vQyMMLHIGK5F7Gb2-toeXEPG9Lr8h4KfcadS1TbNnHs00mIxFAXfSvA03_-eeAD5KfLaLOWeOBlppOQ/pubhtml#target=_system"
+            },
+            {
+              title: "Elementary Staff",
+              icon: `<svg viewBox="0 0 24 24"><circle cx="12" cy="6" r="3.5"/><line x1="12" y1="9.5" x2="12" y2="16"/><line x1="5" y1="11" x2="12" y2="13"/><line x1="12" y1="13" x2="19" y2="11"/><line x1="12" y1="16" x2="7" y2="22"/><line x1="12" y1="16" x2="17" y2="22"/></svg>`,
+              url: "https://docs.google.com/spreadsheets/d/e/2PACX-1vS0hQ4L22rYazmk1aFdRzMy1Wx1a53WPX7nfObYtTjVjtUOsLAtwyYkG3yHgwKjx1DMPZvuFw2OtxQJ/pubhtml#target=_system"
+            },
+            {
+              title: "High School Staff",
+              icon: `<svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 2 6 3 6 3s6-1 6-3v-5"/></svg>`,
+              url: "https://docs.google.com/spreadsheets/d/e/2PACX-1vRdkPaDH_7NquNjOFrXDcaETLf2dFS7mffjQzf-kVAPge8hMy0bIFgju-hixiTz6kYGN72IooLY8Jcf/pubhtml#target=_system"
+            }
+          ]
+        },
+        {
+          id: "call_us",
+          title: "Call Us",
+          icon: `<svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>`,
+          hasSubgrid: true,
+          items: [
+            {
+              title: "Elementary Phone",
+              icon: `<svg viewBox="0 0 24 24"><circle cx="12" cy="6" r="3.5"/><line x1="12" y1="9.5" x2="12" y2="16"/><line x1="5" y1="11" x2="12" y2="13"/><line x1="12" y1="13" x2="19" y2="11"/><line x1="12" y1="16" x2="7" y2="22"/><line x1="12" y1="16" x2="17" y2="22"/></svg>`,
+              url: "tel:3084523202"
+            },
+            {
+              title: "High School Phone",
+              icon: `<svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 2 6 3 6 3s6-1 6-3v-5"/></svg>`,
+              url: "tel:3084523249"
+            }
+          ]
+        },
+        {
+          id: "streaming",
+          title: "Streaming",
+          icon: `<svg viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>`,
+          hasSubgrid: true,
+          items: [
+            {
+              title: "Youtube - All Events",
+              icon: `<svg viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/></svg>`,
+              url: "https://www.youtube.com/channel/UCRFh-8YE3WDDfgt_xZ1or4A#target=_system"
+            },
+            {
+              title: "Hudl - Athletics ONLY",
+              icon: `<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/><path d="M2 12h20"/></svg>`,
+              url: "https://fan.hudl.com/usa/ne/ravenna/organization/174/ravenna-high-school#target=_system"
+            },
+            {
+              title: "NFHS (subscription)",
+              icon: `<svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="15" rx="2" ry="2"/><polyline points="17 2 12 7 7 2"/></svg>`,
+              url: "https://www.nfhsnetwork.com/schools/ravenna-high-school-ravenna-ne#target=_system"
+            }
+          ]
+        }
+      ]
+    };
+
+    // Current State Variable
+    let currentView = "main";
+
+    // DOM Element References
+    const viewArea = document.getElementById("view-area");
+    const toast = document.getElementById("toast");
+    const toastMsg = document.getElementById("toast-msg");
+    const splashScreen = document.getElementById("splash-screen");
+    const logoHeaderBtn = document.getElementById("logo-header-btn");
+
+    // Toast Feedback
+    function showToast(message) {
+      toastMsg.textContent = message;
+      toast.classList.add("show");
+      setTimeout(() => {
+        toast.classList.remove("show");
+      }, 2500);
+    }
+
+    // Link Handler
+    function openLink(title, url) {
+      showToast(`Opening ${title}...`);
+      setTimeout(() => {
+        if (url.startsWith("tel:")) {
+          window.location.href = url;
+        } else {
+          window.open(url, "_blank", "noopener,noreferrer");
+        }
+      }, 200);
+    }
+
+    // Render Main 3x3 Grid
+    function renderMainGrid() {
+      currentView = "main";
+      let html = `<div class="grid-3x3 fade-enter">`;
+
+      DATA_CONFIG.mainGrid.forEach(item => {
+        html += `
+          <button class="grid-card" data-id="${item.id}">
+            ${item.hasSubgrid ? '<div class="subgrid-badge"></div>' : ''}
+            <div class="grid-icon">${item.icon}</div>
+            <div class="grid-label">${item.title}</div>
+          </button>
+        `;
+      });
+
+      html += `</div>`;
+      viewArea.innerHTML = html;
+
+      // Click Listeners
+      viewArea.querySelectorAll(".grid-card").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const id = btn.getAttribute("data-id");
+          const item = DATA_CONFIG.mainGrid.find(i => i.id === id);
+          if (!item) return;
+
+          if (item.hasSubgrid) {
+            renderSubgrid(item);
+          } else if (item.url) {
+            openLink(item.title, item.url);
+          }
+        });
+      });
+    }
+
+    // Render Subgrid Layout
+    function renderSubgrid(parentItem) {
+      currentView = parentItem.id;
+      let html = `
+        <div class="fade-enter" style="width: 100%;">
+          <div class="subgrid-nav">
+            <button id="back-to-main" class="back-btn">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+              <span>Back</span>
+            </button>
+            <div class="subgrid-title">${parentItem.title}</div>
+            <div style="width: 50px;"></div>
+          </div>
+          <div class="grid-3x3">
+      `;
+
+      parentItem.items.forEach((sub, idx) => {
+        html += `
+          <button class="grid-card subgrid-card" data-idx="${idx}">
+            <div class="grid-icon">${sub.icon}</div>
+            <div class="grid-label">${sub.title}</div>
+          </button>
+        `;
+      });
+
+      html += `
+          </div>
+        </div>
+      `;
+
+      viewArea.innerHTML = html;
+
+      // Back Button Listener
+      document.getElementById("back-to-main").addEventListener("click", () => {
+        renderMainGrid();
+      });
+
+      // Subgrid Item Listener
+      viewArea.querySelectorAll(".subgrid-card").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const idx = parseInt(btn.getAttribute("data-idx"), 10);
+          const sub = parentItem.items[idx];
+          if (sub && sub.url) {
+            openLink(sub.title, sub.url);
+          }
+        });
+      });
+    }
+
+    // Logo Click returns to main grid
+    logoHeaderBtn.addEventListener("click", () => {
+      if (currentView !== "main") {
+        renderMainGrid();
+      }
+    });
+
+    // Hide Splash Screen
+    window.addEventListener("load", () => {
+      setTimeout(() => {
+        splashScreen.classList.add("hidden");
+        renderMainGrid();
+      }, 600);
+    });
+
+    // Register PWA Service Worker
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js').then(reg => {
+          console.log('Ravenna Portal SW registered');
+        }).catch(err => {
+          console.log('SW registration error:', err);
+        });
+      });
+    }
+
+    // PWA Install Prompt
+    let deferredPrompt;
+    const installBtn = document.getElementById("pwa-install-btn");
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      installBtn.style.display = "inline-flex";
+    });
+
+    installBtn.addEventListener('click', () => {
+      if (deferredPrompt) {
+        deferredPrompt.prompt();
+        deferredPrompt.userChoice.then((choiceResult) => {
+          if (choiceResult.outcome === 'accepted') {
+            installBtn.style.display = "none";
+          }
+          deferredPrompt = null;
+        });
+      }
+    });
+  </script>
+</body>
+</html>

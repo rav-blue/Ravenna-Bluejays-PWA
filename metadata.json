@@ -1,0 +1,6 @@
+{
+  "name": "Ravenna Bluejays Portal",
+  "description": "Mobile-first Progressive Web App for Ravenna Bluejays school portal links, directories, and resources.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
