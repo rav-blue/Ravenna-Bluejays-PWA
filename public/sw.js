@@ -1,11 +1,10 @@
-const CACHE_NAME = 'bluejays-portal-v3';
+const CACHE_NAME = 'rps-portal-v6';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
   './manifest.json',
+  './Podium%20Block%20R%20(Royal%20Blue).png',
   './logo.png',
-  './logo.jpg',
-  './logo.svg',
   './icon-192.png',
   './icon-512.png',
   './apple-touch-icon.png'

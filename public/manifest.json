@@ -1,7 +1,7 @@
 {
-  "name": "Ravenna Bluejays Portal",
+  "name": "RPS Portal",
   "short_name": "RPS Portal",
-  "description": "Ravenna Bluejays School Portal App",
+  "description": "RPS Portal - Ravenna Public Schools",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
@@ -10,16 +10,34 @@
   "orientation": "portrait",
   "icons": [
     {
-      "src": "icon-192.png",
-      "sizes": "192x192",
+      "src": "Podium%20Block%20R%20(Royal%20Blue).png",
+      "sizes": "1024x1024",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
     },
     {
       "src": "icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
+    },
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
     }
   ]
 }
