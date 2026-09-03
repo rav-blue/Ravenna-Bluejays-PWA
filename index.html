@@ -54,14 +54,14 @@ this file.
   <title>Ravenna Bluejays</title>
   
   <!-- PWA & Mobile Capabilities -->
-  <link rel="manifest" href="/manifest.json" />
+  <link rel="manifest" href="./manifest.json" />
   <meta name="theme-color" content="#0a1936" />
   <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="Ravenna Bluejays" />
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-  <link rel="icon" type="image/png" href="/icon-192.png" />
+  <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
+  <link rel="icon" type="image/png" href="./icon-192.png" />
 
   <style>
     /* Reset & Base Styles */
@@ -86,7 +86,7 @@ this file.
     body {
       background: 
         radial-gradient(circle at 50% 15%, rgba(22, 60, 138, 0.82) 0%, rgba(10, 25, 54, 0.95) 60%, rgba(4, 11, 26, 1) 100%),
-        url('/logo.jpg') no-repeat center 25% / 120% opacity 0.06;
+        url('./logo.jpg') no-repeat center 25% / 120% opacity 0.06;
       background-attachment: fixed;
       min-height: 100vh;
       display: flex;
@@ -566,7 +566,7 @@ this file.
   <!-- Splash / Loading Screen -->
   <div id="splash-screen">
     <div class="splash-logo-wrap">
-      <img src="/logo.jpg" alt="Ravenna Bluejays Mascot" />
+      <img src="./logo.jpg" alt="Ravenna Bluejays Mascot" />
     </div>
     <div class="splash-title">Ravenna Bluejays</div>
     <div class="splash-sub">School Portal</div>
@@ -581,7 +581,7 @@ this file.
     <!-- Top Title Header -->
     <header>
       <div class="header-logo-badge" id="logo-header-btn">
-        <img src="/logo.jpg" alt="Ravenna Bluejays Logo" />
+        <img src="./logo.jpg" alt="Ravenna Bluejays Logo" />
       </div>
       <h1 class="header-title">Ravenna Bluejays</h1>
       <div class="header-subtitle">School Portal</div>
@@ -916,7 +916,7 @@ this file.
     // Register PWA Service Worker
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js').then(reg => {
+        navigator.serviceWorker.register('./sw.js').then(reg => {
           console.log('Ravenna Portal SW registered');
         }).catch(err => {
           console.log('SW registration error:', err);
