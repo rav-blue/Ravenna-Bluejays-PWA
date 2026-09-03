@@ -1,9 +1,11 @@
-const CACHE_NAME = 'bluejays-portal-v2';
+const CACHE_NAME = 'bluejays-portal-v3';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
   './manifest.json',
+  './logo.png',
   './logo.jpg',
+  './logo.svg',
   './icon-192.png',
   './icon-512.png',
   './apple-touch-icon.png'

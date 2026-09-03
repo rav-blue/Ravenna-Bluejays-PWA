@@ -40,16 +40,16 @@ export const Header: React.FC<HeaderProps> = ({
         {/* Top Branding Bar */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div className="flex items-center gap-3.5">
-            <div className="relative w-12 h-12 sm:w-14 sm:h-14 rounded-2xl overflow-hidden border-2 border-blue-500/40 shadow-md bg-slate-800 flex items-center justify-center flex-shrink-0">
+            <div className="bg-white rounded-xl p-1.5 shadow-md border border-white/20 flex items-center justify-center flex-shrink-0">
               <img
-                src="/logo.jpg"
-                alt="Ravenna Bluejays Logo"
-                className="w-full h-full object-cover"
+                src="/logo.png"
+                alt="Ravenna Bluejays Scoreboard Logo"
+                className="h-10 sm:h-12 w-auto max-w-[140px] sm:max-w-[180px] object-contain"
                 onError={(e) => {
-                  (e.target as HTMLElement).style.display = 'none';
+                  (e.target as HTMLImageElement).src = '/logo.svg';
                 }}
+                referrerPolicy="no-referrer"
               />
-              <School size={28} className="text-blue-400 absolute" />
             </div>
 
             <div>

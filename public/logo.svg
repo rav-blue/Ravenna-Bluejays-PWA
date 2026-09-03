@@ -1,0 +1,154 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="100%" height="100%" preserveAspectRatio="xMidYMid meet">
+  <defs>
+    <filter id="crisp-shadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#000000" flood-opacity="0.35" />
+    </filter>
+  </defs>
+
+  <g id="ravenna-scoreboard-logo" filter="url(#crisp-shadow)">
+    <!-- Main Outer Silhouette Black Boundary -->
+    <path
+      d="M 240 530 
+         C 310 490, 400 455, 525 340 
+         L 560 355 
+         C 530 330, 550 300, 580 290 
+         C 750 200, 1000 140, 1300 115 
+         C 1450 102, 1580 96, 1675 95 
+         C 1580 200, 1480 310, 1390 420 
+         L 1350 420 
+         L 1410 390 
+         L 1030 985 
+         C 910 870, 770 730, 635 595 
+         C 500 575, 360 555, 240 530 Z"
+      fill="#000000"
+    />
+
+    <!-- Royal Blue Crown & Body Feather Fill -->
+    <path
+      d="M 525 340 
+         C 545 348, 555 352, 560 355 
+         C 535 332, 555 302, 580 290 
+         C 750 200, 1000 140, 1300 115 
+         C 1445 103, 1570 97, 1655 102 
+         C 1570 200, 1475 305, 1390 410 
+         L 1355 410 
+         L 1400 385 
+         L 1030 965 
+         C 915 855, 780 720, 650 595 
+         C 890 595, 1165 470, 1275 395 
+         C 1020 295, 680 315, 510 440 
+         C 480 390, 500 360, 525 340 Z"
+      fill="#0B2E83"
+    />
+
+    <!-- Black Feather Accent on Crest -->
+    <path
+      d="M 1390 270 
+         L 1410 390 
+         L 1360 415 
+         C 1375 365, 1385 315, 1390 270 Z"
+      fill="#000000"
+    />
+
+    <!-- Neck Shadow Black Notch -->
+    <path
+      d="M 890 595 
+         C 930 635, 960 675, 980 725 
+         C 955 690, 920 650, 880 620 Z"
+      fill="#000000"
+    />
+
+    <!-- Lower Beak (Medium Silver Gray) -->
+    <path
+      d="M 245 530 
+         C 370 550, 505 570, 635 595 
+         L 625 495 
+         C 480 505, 360 520, 245 530 Z"
+      fill="#727983"
+      stroke="#000000"
+      stroke-width="12"
+      stroke-linejoin="round"
+    />
+
+    <!-- Upper Beak (Light Silver Gray) -->
+    <path
+      d="M 245 530 
+         C 350 495, 420 470, 510 445 
+         C 500 465, 485 480, 460 490 
+         L 625 495 
+         C 480 505, 360 520, 245 530 Z"
+      fill="#C4CBD4"
+      stroke="#000000"
+      stroke-width="12"
+      stroke-linejoin="round"
+    />
+
+    <!-- Black Nostril / Beak Contour -->
+    <path
+      d="M 485 460 
+         C 440 450, 480 430, 505 440 
+         C 495 450, 490 455, 485 460 Z"
+      fill="#000000"
+    />
+
+    <!-- White Face Mask / Cheek Region -->
+    <path
+      d="M 510 440 
+         C 680 315, 1020 295, 1275 395 
+         C 1165 470, 890 595, 635 595 
+         C 610 550, 560 480, 510 440 Z"
+      fill="#FFFFFF"
+      stroke="#000000"
+      stroke-width="14"
+      stroke-linejoin="round"
+    />
+
+    <!-- Aggressive Black Brow / Eye Contour -->
+    <path
+      d="M 510 440 
+         C 570 380, 680 330, 850 340 
+         C 1020 350, 1180 400, 1275 395 
+         C 1160 410, 1010 370, 850 365 
+         C 690 360, 580 400, 510 440 Z"
+      fill="#000000"
+    />
+
+    <!-- Eye Black Outer Crescent -->
+    <path
+      d="M 640 460 
+         C 650 380, 770 360, 880 390 
+         C 940 410, 970 445, 960 480 
+         C 880 540, 720 540, 640 460 Z"
+      fill="#000000"
+    />
+
+    <!-- Eye White Sclera Interior -->
+    <path
+      d="M 660 455 
+         C 670 395, 770 380, 860 405 
+         C 920 425, 945 455, 935 475 
+         C 865 520, 730 520, 660 455 Z"
+      fill="#FFFFFF"
+    />
+
+    <!-- Eye Iris / Pupil (Intense Dark Pupil) -->
+    <path
+      d="M 700 450 
+         C 710 405, 780 390, 820 405 
+         C 845 425, 835 460, 810 475 
+         C 765 490, 715 480, 700 450 Z"
+      fill="#000000"
+    />
+
+    <!-- White Glint Highlight in Pupil -->
+    <ellipse cx="740" cy="425" rx="14" ry="18" transform="rotate(-25 740 425)" fill="#FFFFFF" />
+
+    <!-- Sharp Cheek Accent Lines -->
+    <path
+      d="M 635 595 
+         C 720 540, 850 510, 940 500 
+         C 850 525, 730 555, 635 595 Z"
+      fill="#000000"
+    />
+  </g>
+</svg>
