@@ -1,6 +1,6 @@
 {
   "name": "Ravenna Bluejays Portal",
-  "short_name": "Bluejays",
+  "short_name": "RPS Portal",
   "description": "Ravenna Bluejays School Portal App",
   "start_url": "./",
   "scope": "./",
