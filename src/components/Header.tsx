@@ -42,11 +42,11 @@ export const Header: React.FC<HeaderProps> = ({
           <div className="flex items-center gap-3.5">
             <div className="flex items-center justify-center flex-shrink-0">
               <img
-                src="/Podium%20Block%20R%20(Royal%20Blue).png"
+                src="/logo.png"
                 alt="Ravenna Public Schools Podium Block R Logo"
-                className="h-12 sm:h-14 w-12 sm:w-14 object-contain drop-shadow-md"
+                className="h-12 sm:h-14 w-12 sm:w-14 object-contain"
                 onError={(e) => {
-                  (e.target as HTMLImageElement).src = '/logo.png';
+                  (e.target as HTMLImageElement).src = '/Podium%20Block%20R%20(Royal%20Blue).png';
                 }}
                 referrerPolicy="no-referrer"
               />

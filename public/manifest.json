@@ -10,7 +10,7 @@
   "orientation": "portrait",
   "icons": [
     {
-      "src": "Podium%20Block%20R%20(Royal%20Blue).png",
+      "src": "logo.png",
       "sizes": "1024x1024",
       "type": "image/png",
       "purpose": "any"

@@ -63,7 +63,7 @@ this file.
   <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
   <link rel="icon" type="image/png" sizes="192x192" href="./icon-192.png" />
   <link rel="icon" type="image/png" sizes="512x512" href="./icon-512.png" />
-  <link rel="icon" type="image/png" href="./Podium%20Block%20R%20(Royal%20Blue).png" />
+  <link rel="icon" type="image/png" href="./logo.png" />
 
   <style>
     /* Reset & Base Styles */
@@ -166,19 +166,13 @@ this file.
     }
 
     .splash-logo-wrap img {
-      width: 150px;
-      height: 150px;
-      max-width: 170px;
-      max-height: 170px;
+      width: 140px;
+      height: 140px;
+      max-width: 160px;
+      max-height: 160px;
       object-fit: contain;
-      filter: drop-shadow(0 14px 32px rgba(0, 0, 0, 0.75)) drop-shadow(0 0 35px rgba(22, 80, 210, 0.8));
-      animation: pulse-glow 2s infinite ease-in-out;
       display: block;
-    }
-
-    @keyframes pulse-glow {
-      0%, 100% { filter: drop-shadow(0 14px 32px rgba(0, 0, 0, 0.75)) drop-shadow(0 0 20px rgba(22, 80, 210, 0.5)); transform: scale(1); }
-      50% { filter: drop-shadow(0 14px 32px rgba(0, 0, 0, 0.75)) drop-shadow(0 0 35px rgba(45, 120, 255, 0.85)); transform: scale(1.03); }
+      filter: none;
     }
 
     .splash-title {
@@ -262,8 +256,8 @@ this file.
       max-width: 150px;
       max-height: 150px;
       object-fit: contain;
-      filter: drop-shadow(0 12px 28px rgba(0, 0, 0, 0.65)) drop-shadow(0 0 22px rgba(16, 68, 194, 0.45));
       display: block;
+      filter: none;
     }
 
     .header-title {
@@ -579,7 +573,7 @@ this file.
   <!-- Splash / Loading Screen -->
   <div id="splash-screen">
     <div class="splash-logo-wrap">
-      <img src="./Podium%20Block%20R%20(Royal%20Blue).png" alt="Ravenna Public Schools Podium Block R Logo" onerror="this.src='./logo.png'" />
+      <img src="./logo.png" alt="Ravenna Public Schools Podium Block R Logo" onerror="this.src='./Podium%20Block%20R%20(Royal%20Blue).png'" width="140" height="140" />
     </div>
     <div class="splash-title">Ravenna Bluejays</div>
     <div class="splash-sub">School Portal</div>
@@ -594,7 +588,7 @@ this file.
     <!-- Top Title Header -->
     <header>
       <div class="header-logo-badge" id="logo-header-btn" title="Ravenna Public Schools Official Seal">
-        <img src="./Podium%20Block%20R%20(Royal%20Blue).png" alt="Ravenna Public Schools Podium Block R Logo" onerror="this.src='./logo.png'" />
+        <img src="./logo.png" alt="Ravenna Public Schools Podium Block R Logo" onerror="this.src='./Podium%20Block%20R%20(Royal%20Blue).png'" width="130" height="130" />
       </div>
       <h1 class="header-title">Ravenna Bluejays</h1>
       <div class="header-subtitle">School Portal</div>
