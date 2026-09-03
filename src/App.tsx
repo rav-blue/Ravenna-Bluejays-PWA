@@ -87,7 +87,7 @@ export default function App() {
             >
               <ICIcon size={28} className="text-lime-700 mb-1" />
               <span className="text-xs font-bold text-lime-950">Infinite Campus</span>
-              <span className="text-[10px] text-lime-700 font-medium">District Logo</span>
+              <span className="text-[10px] text-lime-700 font-medium">Letters IC</span>
             </button>
 
             {/* 3. IC - Student */}
@@ -137,7 +137,7 @@ export default function App() {
             >
               <AthleticsTrioIcon size={28} className="text-orange-600 mb-1" />
               <span className="text-xs font-bold text-orange-950">Hudl Athletics</span>
-              <span className="text-[10px] text-orange-700 font-medium">Hudl Pinwheel</span>
+              <span className="text-[10px] text-orange-700 font-medium">Football, BBall, VBall</span>
             </button>
           </div>
         </section>

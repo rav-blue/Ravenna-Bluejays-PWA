@@ -47,82 +47,26 @@ export const CafeteriaMenuIcon: React.FC<IconProps> = ({ size = 24, className = 
 export const CafeteriaTrayIcon = CafeteriaMenuIcon;
 
 /**
- * Infinite Campus Icon: Authentic district logo mark matching Infinite Campus.jpg
- * with the signature celestial orbital arc, dotted infinity loop, and bold stylized lettering.
+ * Infinite Campus Icon: Strictly just the bold letters IC as requested
  */
 export const ICIcon: React.FC<IconProps> = ({ size = 24, className = '', color = 'currentColor', ...props }) => {
   return (
     <svg
       width={size}
       height={size}
-      viewBox="0 0 48 48"
+      viewBox="0 0 24 24"
       fill="none"
+      stroke={color}
+      strokeWidth="2.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
       className={className}
       {...props}
     >
-      {/* Soft rounded background badge container matching Infinite Campus style */}
-      <rect x="2" y="2" width="44" height="44" rx="10" fill="#84bd00" fillOpacity="0.2" stroke="#72a500" strokeWidth="1.5" />
-
-      {/* Infinite Campus Planetary Orbit Arc */}
-      <path
-        d="M 28 25 A 9 9 0 1 1 39.5 17.5"
-        fill="none"
-        stroke={color === 'currentColor' ? 'currentColor' : color}
-        strokeWidth="2.2"
-        strokeLinecap="round"
-      />
-
-      {/* Infinite Campus Dotted Infinity Loop Track */}
-      {/* Left side dots entering loop */}
-      <circle cx="21" cy="22.2" r="1.1" fill={color === 'currentColor' ? 'currentColor' : color} />
-      <circle cx="23.4" cy="21.6" r="1.2" fill={color === 'currentColor' ? 'currentColor' : color} />
-      <circle cx="25.8" cy="22" r="1.3" fill={color === 'currentColor' ? 'currentColor' : color} />
-      <circle cx="28.2" cy="23.4" r="1.4" fill={color === 'currentColor' ? 'currentColor' : color} />
-      <circle cx="30.5" cy="25" r="1.5" fill={color === 'currentColor' ? 'currentColor' : color} />
-
-      {/* Right side loop */}
-      <circle cx="33.5" cy="23.6" r="1.4" fill={color === 'currentColor' ? 'currentColor' : color} />
-      <circle cx="36.2" cy="21.2" r="1.3" fill={color === 'currentColor' ? 'currentColor' : color} />
-      <circle cx="38.8" cy="19.6" r="1.2" fill={color === 'currentColor' ? 'currentColor' : color} />
-      <circle cx="41.2" cy="20.2" r="1.1" fill={color === 'currentColor' ? 'currentColor' : color} />
-      <circle cx="42.2" cy="22.4" r="1.1" fill={color === 'currentColor' ? 'currentColor' : color} />
-      <circle cx="41.2" cy="24.4" r="1.1" fill={color === 'currentColor' ? 'currentColor' : color} />
-      <circle cx="39.2" cy="25.4" r="1.2" fill={color === 'currentColor' ? 'currentColor' : color} />
-      <circle cx="36.4" cy="25.8" r="1.3" fill={color === 'currentColor' ? 'currentColor' : color} />
-      <circle cx="33.2" cy="25.8" r="1.4" fill={color === 'currentColor' ? 'currentColor' : color} />
-
-      {/* Return loop dots */}
-      <circle cx="28.8" cy="25.4" r="1.3" fill={color === 'currentColor' ? 'currentColor' : color} />
-      <circle cx="25.8" cy="25.2" r="1.2" fill={color === 'currentColor' ? 'currentColor' : color} />
-      <circle cx="23" cy="24.2" r="1.1" fill={color === 'currentColor' ? 'currentColor' : color} />
-
-      {/* "Infinite" typography (italic, dynamic font) */}
-      <text
-        x="6"
-        y="21"
-        fontSize="7.5"
-        fontWeight="800"
-        fontStyle="italic"
-        fontFamily="system-ui, -apple-system, sans-serif"
-        fill={color === 'currentColor' ? 'currentColor' : color}
-        letterSpacing="-0.2"
-      >
-        Infinite
-      </text>
-
-      {/* "Campus" typography (bold rounded font) */}
-      <text
-        x="11"
-        y="30"
-        fontSize="9"
-        fontWeight="900"
-        fontStyle="italic"
-        fontFamily="system-ui, -apple-system, sans-serif"
-        fill={color === 'currentColor' ? 'currentColor' : color}
-        letterSpacing="-0.3"
-      >
-        Campus
-      </text>
+      {/* Letter I */}
+      <path d="M5 5h4M7 5v14M5 19h4" />
+      {/* Letter C */}
+      <path d="M19 7a5 5 0 0 0-7 0v10a5 5 0 0 0 7 0" />
     </svg>
   );
 };
@@ -289,35 +233,38 @@ export const KidStickFigurePhoneIcon: React.FC<IconProps> = ({ size = 24, classN
 };
 
 /**
- * Hudl - Athletics ONLY Icon: The authentic Hudl 3-element rotating pinwheel logo from Hudl.png
+ * Hudl - Athletics ONLY Icon: Football, Basketball, & Volleyball trio icon
  */
-export const HudlIcon: React.FC<IconProps> = ({ size = 24, className = '', color = 'currentColor', ...props }) => {
+export const AthleticsTrioIcon: React.FC<IconProps> = ({ size = 24, className = '', color = 'currentColor', ...props }) => {
   return (
     <svg
       width={size}
       height={size}
-      viewBox="0 0 100 100"
+      viewBox="0 0 24 24"
       fill="none"
+      stroke={color}
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
       className={className}
       {...props}
     >
-      <g fill={color === 'currentColor' ? 'currentColor' : color}>
-        {/* Lobe 1 (Top/Right) */}
-        <path d="M 38.6 1.4 C 52 2.8 67 6.2 77.8 9.5 C 85.8 14 94.5 20.8 98.2 29.8 C 101.5 38 98.8 46.8 93 52.8 C 86.8 59 79 60.5 74 60.5 C 76.8 48.5 77.8 38.5 73.2 29.8 C 67.5 19 53 10 38.6 1.4 Z" />
-        {/* Lobe 2 (Bottom) */}
-        <path
-          d="M 38.6 1.4 C 52 2.8 67 6.2 77.8 9.5 C 85.8 14 94.5 20.8 98.2 29.8 C 101.5 38 98.8 46.8 93 52.8 C 86.8 59 79 60.5 74 60.5 C 76.8 48.5 77.8 38.5 73.2 29.8 C 67.5 19 53 10 38.6 1.4 Z"
-          transform="rotate(120 50 50)"
-        />
-        {/* Lobe 3 (Top/Left) */}
-        <path
-          d="M 38.6 1.4 C 52 2.8 67 6.2 77.8 9.5 C 85.8 14 94.5 20.8 98.2 29.8 C 101.5 38 98.8 46.8 93 52.8 C 86.8 59 79 60.5 74 60.5 C 76.8 48.5 77.8 38.5 73.2 29.8 C 67.5 19 53 10 38.6 1.4 Z"
-          transform="rotate(240 50 50)"
-        />
-      </g>
+      {/* Football (top left) */}
+      <path d="M2 8c0-3.3 2.7-6 6-6 1.5 0 3 1.5 3 3 0 3.3-2.7 6-6 6-1.5 0-3-1.5-3-3z" />
+      <line x1="4.5" y1="4.5" x2="7.5" y2="7.5" />
+      <line x1="5" y1="7" x2="7" y2="5" />
+      {/* Basketball (bottom left) */}
+      <circle cx="7" cy="17" r="4" />
+      <line x1="3" y1="17" x2="11" y2="17" />
+      <line x1="7" y1="13" x2="7" y2="21" />
+      {/* Volleyball (right) */}
+      <circle cx="17" cy="12" r="4.5" />
+      <line x1="12.5" y1="12" x2="21.5" y2="12" />
+      <path d="M14.5 9.5c2 1.5 2 3.5 0 5" />
+      <path d="M19.5 9.5c-2 1.5-2 3.5 0 5" />
     </svg>
   );
 };
-export const AthleticsTrioIcon = HudlIcon;
-export const HudlAthleticsIcon = HudlIcon;
+export const HudlIcon = AthleticsTrioIcon;
+export const HudlAthleticsIcon = AthleticsTrioIcon;
 
