@@ -6,7 +6,25 @@ import {defineConfig} from 'vite';
 export default defineConfig(() => {
   return {
     base: './',
-    plugins: [react(), tailwindcss()],
+    plugins: [
+      react(),
+      tailwindcss(),
+      {
+        name: 'pwa-headers',
+        configureServer(server) {
+          server.middlewares.use((req, res, next) => {
+            if (req.url && (req.url.endsWith('/manifest.json') || req.url.endsWith('manifest.webmanifest'))) {
+              res.setHeader('Content-Type', 'application/manifest+json');
+            }
+            if (req.url && req.url.endsWith('/sw.js')) {
+              res.setHeader('Content-Type', 'application/javascript');
+              res.setHeader('Service-Worker-Allowed', '/');
+            }
+            next();
+          });
+        },
+      },
+    ],
     resolve: {
       alias: {
         '@': path.resolve(__dirname, '.'),

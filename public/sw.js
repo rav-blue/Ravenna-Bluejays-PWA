@@ -1,19 +1,26 @@
-const CACHE_NAME = 'ravcentral-v1';
+const CACHE_NAME = 'ravcentral-v3';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
   './manifest.json',
   './logo.png',
-  './official-emblem.png',
   './icon-192.png',
   './icon-512.png',
+  './icon-maskable-192.png',
+  './icon-maskable-512.png',
   './apple-touch-icon.png'
 ];
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
-      return cache.addAll(ASSETS_TO_CACHE);
+      return Promise.allSettled(
+        ASSETS_TO_CACHE.map((url) =>
+          cache.add(url).catch((err) => {
+            console.warn('PWA pre-cache item warning:', url, err);
+          })
+        )
+      );
     })
   );
   self.skipWaiting();
