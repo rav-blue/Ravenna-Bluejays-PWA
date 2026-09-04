@@ -1,10 +1,10 @@
-const CACHE_NAME = 'rps-portal-v7';
+const CACHE_NAME = 'ravcentral-v1';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
   './manifest.json',
-  './Podium%20Block%20R%20(Royal%20Blue).png',
   './logo.png',
+  './official-emblem.png',
   './icon-192.png',
   './icon-512.png',
   './apple-touch-icon.png'

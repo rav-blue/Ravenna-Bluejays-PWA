@@ -1,17 +1,17 @@
 {
-  "name": "RPS Portal",
-  "short_name": "RPS Portal",
-  "description": "RPS Portal - Ravenna Public Schools",
+  "name": "RavCentral",
+  "short_name": "RavCentral",
+  "description": "RavCentral - Ravenna Public Schools Official PWA",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#0a1633",
-  "theme_color": "#0d1b3e",
+  "background_color": "#060b14",
+  "theme_color": "#1155a0",
   "orientation": "portrait",
   "icons": [
     {
       "src": "logo.png",
-      "sizes": "1024x1024",
+      "sizes": "800x800",
       "type": "image/png",
       "purpose": "any"
     },

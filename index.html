@@ -1,6 +1,6 @@
 <!--
 ================================================================================
-                    RAVENNA BLUEJAYS PORTAL LINK CONFIGURATION
+              RAVENNA BLUEJAYS - RAVCENTRAL PORTAL LINK CONFIGURATION
 ================================================================================
 To modify or update any button links in the future, edit the target URLs listed
 below or update the DATA_CONFIG object inside the <script> block at the bottom of
@@ -26,6 +26,7 @@ this file.
    - Parent Links (link icon):                 https://www.ravennabluejays.org/parent-resources/parent-links#target=_system
    - PSA          (megaphone view side icon):  https://www.ravennabluejays.org/parent-resources/psa#target=_system
    - School Forms (paper icon):                https://www.ravennabluejays.org/parent-resources/school-forms#target=_system
+   - Supply Lists (pencil & eraser icon):      https://www.ravennabluejays.org/parent-resources/supply-lists#target=_system
    - For Sale     (money / cash icon):         https://www.ravennabluejays.org/district/for-sale#target=_system
 
 6. Handbooks (book icon):
@@ -51,15 +52,18 @@ this file.
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
-  <title>RPS Portal</title>
+  <title>RavCentral</title>
   
   <!-- PWA & Mobile Capabilities -->
   <link rel="manifest" href="./manifest.json" />
-  <meta name="theme-color" content="#0a1936" />
+  <meta name="theme-color" content="#1155a0" />
   <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <meta name="apple-mobile-web-app-title" content="RPS Portal" />
+  <meta name="apple-mobile-web-app-title" content="RavCentral" />
+  <meta property="og:title" content="RavCentral" />
+  <meta name="description" content="RavCentral - Official mobile-first Progressive Web App for Ravenna Bluejays with school links, directories, and resources." />
+  <meta property="og:description" content="RavCentral - Official mobile-first Progressive Web App for Ravenna Bluejays with school links, directories, and resources." />
   <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
   <link rel="icon" type="image/png" sizes="192x192" href="./icon-192.png" />
   <link rel="icon" type="image/png" sizes="512x512" href="./icon-512.png" />
@@ -79,15 +83,15 @@ this file.
       height: 100%;
       overflow-x: hidden;
       font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      background-color: #050e21;
+      background-color: #060b14;
       color: #ffffff;
       touch-action: manipulation;
     }
 
-    /* Full-Screen Deep Blue Background */
+    /* Full-Screen Deep Blue, Black & Gray Background */
     body {
-      background: radial-gradient(circle at 50% 15%, rgba(22, 60, 138, 0.82) 0%, rgba(10, 25, 54, 0.95) 60%, rgba(4, 11, 26, 1) 100%);
-      background-color: #050e21;
+      background: radial-gradient(circle at 50% 12%, rgba(17, 85, 160, 0.65) 0%, rgba(10, 20, 38, 0.95) 45%, rgba(6, 11, 20, 1) 100%);
+      background-color: #060b14;
       background-attachment: fixed;
       min-height: 100vh;
       display: flex;
@@ -103,9 +107,9 @@ this file.
       top: -100px;
       left: 50%;
       transform: translateX(-50%);
-      width: 420px;
-      height: 420px;
-      background: radial-gradient(circle, rgba(29, 90, 212, 0.45) 0%, rgba(13, 27, 62, 0) 70%);
+      width: 440px;
+      height: 440px;
+      background: radial-gradient(circle, rgba(17, 85, 160, 0.5) 0%, rgba(8, 17, 34, 0) 70%);
       pointer-events: none;
       z-index: 0;
     }
@@ -117,7 +121,7 @@ this file.
       transform: translateX(-50%);
       width: 500px;
       height: 500px;
-      background: radial-gradient(circle, rgba(16, 52, 130, 0.35) 0%, rgba(5, 14, 33, 0) 70%);
+      background: radial-gradient(circle, rgba(15, 60, 120, 0.35) 0%, rgba(6, 11, 20, 0) 70%);
       pointer-events: none;
       z-index: 0;
     }
@@ -287,7 +291,7 @@ this file.
       gap: 6px;
       margin-top: 10px;
       padding: 6px 14px;
-      background: rgba(29, 97, 232, 0.4);
+      background: rgba(17, 85, 160, 0.45);
       border: 1px solid rgba(147, 197, 253, 0.4);
       border-radius: 20px;
       color: #ffffff;
@@ -299,7 +303,7 @@ this file.
     }
 
     .pwa-install-btn:active {
-      background: rgba(29, 97, 232, 0.7);
+      background: rgba(17, 85, 160, 0.75);
       transform: scale(0.96);
     }
 
@@ -319,8 +323,8 @@ this file.
       justify-content: space-between;
       margin-bottom: 18px;
       padding: 10px 14px;
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.18);
+      background: linear-gradient(145deg, rgba(17, 85, 160, 0.25) 0%, rgba(15, 23, 42, 0.8) 100%);
+      border: 1px solid rgba(147, 197, 253, 0.25);
       border-radius: 14px;
       backdrop-filter: blur(12px);
     }
@@ -329,8 +333,8 @@ this file.
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      background: rgba(255, 255, 255, 0.15);
-      border: 1px solid rgba(255, 255, 255, 0.25);
+      background: rgba(17, 85, 160, 0.45);
+      border: 1px solid rgba(147, 197, 253, 0.35);
       color: #ffffff;
       padding: 6px 12px;
       border-radius: 8px;
@@ -341,7 +345,7 @@ this file.
     }
 
     .back-btn:active {
-      background: rgba(255, 255, 255, 0.3);
+      background: rgba(17, 85, 160, 0.7);
       transform: scale(0.95);
     }
 
@@ -371,8 +375,8 @@ this file.
       justify-content: center;
       padding: 10px 6px;
       text-align: center;
-      background: rgba(255, 255, 255, 0.08);
-      border: 1.5px solid rgba(255, 255, 255, 0.18);
+      background: linear-gradient(145deg, rgba(17, 85, 160, 0.2) 0%, rgba(15, 23, 42, 0.72) 100%);
+      border: 1.5px solid rgba(147, 197, 253, 0.2);
       border-radius: 18px;
       color: #ffffff;
       text-decoration: none;
@@ -380,24 +384,24 @@ this file.
       user-select: none;
       position: relative;
       overflow: hidden;
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.15);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       transition: transform 0.18s cubic-bezier(0.2, 0.8, 0.2, 1), background-color 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
     }
 
     .grid-card:hover {
-      background: rgba(255, 255, 255, 0.14);
-      border-color: rgba(255, 255, 255, 0.35);
+      background: linear-gradient(145deg, rgba(17, 85, 160, 0.38) 0%, rgba(30, 41, 59, 0.85) 100%);
+      border-color: rgba(147, 197, 253, 0.45);
       transform: translateY(-2px);
-      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.45), 0 0 16px rgba(17, 85, 160, 0.3);
     }
 
     .grid-card:active {
       transform: scale(0.93);
-      background: rgba(255, 255, 255, 0.22);
-      border-color: rgba(255, 255, 255, 0.5);
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+      background: rgba(17, 85, 160, 0.55);
+      border-color: rgba(255, 255, 255, 0.6);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
     }
 
     /* Stacked Clean White Icon */
@@ -409,7 +413,7 @@ this file.
       align-items: center;
       justify-content: center;
       margin-bottom: 8px;
-      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4));
       flex-shrink: 0;
     }
 
@@ -447,8 +451,8 @@ this file.
       width: 6px;
       height: 6px;
       border-radius: 50%;
-      background: #60a5fa;
-      box-shadow: 0 0 6px #60a5fa;
+      background: #38bdf8;
+      box-shadow: 0 0 6px #38bdf8;
     }
 
     /* Text Below Grid */
@@ -573,10 +577,10 @@ this file.
   <!-- Splash / Loading Screen -->
   <div id="splash-screen">
     <div class="splash-logo-wrap">
-      <img src="./logo.png" alt="Ravenna Public Schools Podium Block R Logo" onerror="this.src='./Podium%20Block%20R%20(Royal%20Blue).png'" width="140" height="140" />
+      <img src="./logo.png" alt="Ravenna Bluejays Official Emblem" onerror="this.src='https://raw.githubusercontent.com/rav-blue/images/12072a039e522cdb54ea4ab2d4dd52bbbd9df6e9/Podium%20Seal%20R%20BluejayBLUE.png'" width="140" height="140" />
     </div>
     <div class="splash-title">Ravenna Bluejays</div>
-    <div class="splash-sub">School Portal</div>
+    <div class="splash-sub">RavCentral</div>
     <div class="splash-loader">
       <div class="splash-loader-bar"></div>
     </div>
@@ -587,11 +591,11 @@ this file.
 
     <!-- Top Title Header -->
     <header>
-      <div class="header-logo-badge" id="logo-header-btn" title="Ravenna Public Schools Official Seal">
-        <img src="./logo.png" alt="Ravenna Public Schools Podium Block R Logo" onerror="this.src='./Podium%20Block%20R%20(Royal%20Blue).png'" width="130" height="130" />
+      <div class="header-logo-badge" id="logo-header-btn" title="Ravenna Bluejays Official Emblem">
+        <img src="./logo.png" alt="Ravenna Bluejays Official Emblem" onerror="this.src='https://raw.githubusercontent.com/rav-blue/images/12072a039e522cdb54ea4ab2d4dd52bbbd9df6e9/Podium%20Seal%20R%20BluejayBLUE.png'" width="130" height="130" />
       </div>
       <h1 class="header-title">Ravenna Bluejays</h1>
-      <div class="header-subtitle">School Portal</div>
+      <div class="header-subtitle">RavCentral</div>
       <button id="pwa-install-btn" class="pwa-install-btn">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
         <span>Install App</span>
@@ -611,7 +615,7 @@ this file.
 
     <!-- Footer -->
     <footer>
-      Ravenna Public Schools &bull; Official Mobile Portal
+      Ravenna Public Schools &bull; Official PWA
     </footer>
 
   </div>
@@ -710,6 +714,11 @@ this file.
               title: "School Forms",
               icon: `<svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>`,
               url: "https://www.ravennabluejays.org/parent-resources/school-forms#target=_system"
+            },
+            {
+              title: "Supply Lists",
+              icon: `<svg viewBox="0 0 24 24"><path d="m18 2 4 4-12 12H6v-4L18 2z"/><path d="m14 6 4 4"/><line x1="2" y1="22" x2="8" y2="22"/><path d="m4 18 4 4"/></svg>`,
+              url: "https://www.ravennabluejays.org/parent-resources/supply-lists#target=_system"
             },
             {
               title: "For Sale",
@@ -924,7 +933,7 @@ this file.
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
         navigator.serviceWorker.register('./sw.js').then(reg => {
-          console.log('Ravenna Portal SW registered');
+          console.log('RavCentral SW registered');
         }).catch(err => {
           console.log('SW registration error:', err);
         });

@@ -1,6 +1,6 @@
 {
-  "name": "RPS Portal",
-  "description": "Mobile-first Progressive Web App for Ravenna Public Schools (RPS) portal links, directories, and resources.",
+  "name": "RavCentral",
+  "description": "RavCentral - Official mobile-first Progressive Web App for Ravenna Bluejays with school links, directories, and resources.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }
