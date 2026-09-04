@@ -180,17 +180,16 @@ this file.
     }
 
     .splash-logo-wrap img {
-      width: 140px;
-      height: 140px;
-      max-width: 160px;
-      max-height: 160px;
+      width: auto;
+      height: 110px;
+      max-width: 175px;
       object-fit: contain;
       display: block;
       filter: none;
     }
 
     .splash-title {
-      margin-top: 24px;
+      margin-top: 14px;
       font-size: 1.6rem;
       font-weight: 800;
       letter-spacing: 0.5px;
@@ -238,7 +237,7 @@ this file.
       flex-direction: column;
       align-items: center;
       margin-top: 8px;
-      margin-bottom: 22px;
+      margin-bottom: 20px;
       text-align: center;
     }
 
@@ -248,7 +247,7 @@ this file.
       background: transparent;
       border: none;
       padding: 0;
-      margin-bottom: 12px;
+      margin-bottom: 3px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -262,13 +261,13 @@ this file.
 
     .header-logo-badge:hover {
       transform: translateY(-2px) scale(1.02);
+      filter: drop-shadow(0 4px 16px rgba(17, 45, 130, 0.6));
     }
 
     .header-logo-badge img {
-      width: 130px;
-      height: 130px;
-      max-width: 150px;
-      max-height: 150px;
+      width: auto;
+      height: 110px;
+      max-width: 175px;
       object-fit: contain;
       display: block;
       filter: none;
@@ -454,6 +453,141 @@ this file.
 
     .install-modal-dismiss:hover {
       background: rgba(255, 255, 255, 0.15);
+    }
+
+    /* Full-Screen Emblem Image Viewer */
+    .image-viewer-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(4, 7, 14, 0.95);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      z-index: 100000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      padding: env(safe-area-inset-top, 14px) 16px env(safe-area-inset-bottom, 16px) 16px;
+      animation: viewerFadeIn 0.2s ease-out;
+      overflow: hidden;
+      touch-action: manipulation;
+    }
+
+    @keyframes viewerFadeIn {
+      from { opacity: 0; transform: scale(0.98); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .viewer-header {
+      width: 100%;
+      max-width: 1100px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 6px 4px 10px 4px;
+      z-index: 10;
+      flex-shrink: 0;
+    }
+
+    .viewer-back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 18px;
+      background: linear-gradient(135deg, #112d82 0%, #1e40af 100%);
+      border: 1px solid rgba(165, 171, 189, 0.5);
+      border-radius: 20px;
+      color: #ffffff;
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+      transition: all 0.2s ease;
+    }
+
+    .viewer-back-btn:hover {
+      background: linear-gradient(135deg, #183bb3 0%, #2563eb 100%);
+      border-color: rgba(227, 230, 231, 0.8);
+      transform: translateY(-1px);
+    }
+
+    .viewer-back-btn:active {
+      transform: scale(0.96);
+    }
+
+    .viewer-title {
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: #cbd5e1;
+      text-align: center;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      padding: 0 10px;
+    }
+
+    .viewer-close-btn {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      color: #e2e8f0;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      font-size: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      line-height: 1;
+      transition: background 0.2s;
+    }
+
+    .viewer-close-btn:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .viewer-image-container {
+      flex: 1;
+      width: 100%;
+      max-width: 1200px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .fullsize-emblem-img {
+      max-width: 96vw;
+      max-height: calc(100vh - 130px);
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      border-radius: 12px;
+      filter: drop-shadow(0 12px 36px rgba(0, 0, 0, 0.75));
+      transition: transform 0.2s ease;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+
+    .fullsize-emblem-img:hover {
+      transform: scale(1.008);
+    }
+
+    .viewer-hint {
+      margin-top: 10px;
+      font-size: 0.8rem;
+      color: #94a3b8;
+      text-align: center;
+      letter-spacing: 0.3px;
+      flex-shrink: 0;
+      opacity: 0.9;
     }
 
     /* Main View Area */
@@ -740,8 +874,8 @@ this file.
 
     <!-- Top Title Header -->
     <header>
-      <div class="header-logo-badge" id="logo-header-btn" title="Ravenna Bluejays Official Emblem">
-        <img src="./logo.png" alt="Ravenna Bluejays Official Emblem" onerror="this.src='https://raw.githubusercontent.com/rav-blue/images/12072a039e522cdb54ea4ab2d4dd52bbbd9df6e9/Podium%20Emblem%20Logos%203%20Colors.png'" width="130" height="130" />
+      <div class="header-logo-badge" id="logo-header-btn" role="button" tabindex="0" title="Click to view full-size emblem" aria-label="Click to view full-size emblem">
+        <img src="./logo.png" alt="Ravenna Bluejays Official Emblem" onerror="this.src='https://raw.githubusercontent.com/rav-blue/images/12072a039e522cdb54ea4ab2d4dd52bbbd9df6e9/Podium%20Emblem%20Logos%203%20Colors.png'" width="175" height="110" />
       </div>
       <h1 class="header-title">Ravenna Bluejays</h1>
       <div class="header-subtitle">RavCentral</div>
@@ -797,6 +931,25 @@ this file.
       </div>
       
       <button class="install-modal-dismiss" id="install-modal-dismiss-btn">Got it</button>
+    </div>
+  </div>
+
+  <!-- Full-Screen Emblem Image Viewer Modal -->
+  <div id="image-viewer-modal" class="image-viewer-overlay" style="display: none;" role="dialog" aria-modal="true" aria-label="Official Emblem Full Screen View">
+    <div class="viewer-header">
+      <button id="image-viewer-back-btn" class="viewer-back-btn" aria-label="Back to main screen">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+        <span>Back</span>
+      </button>
+      <div class="viewer-title">Ravenna Bluejays Official Emblem</div>
+      <button id="image-viewer-close-btn" class="viewer-close-btn" aria-label="Close viewer">&times;</button>
+    </div>
+
+    <div class="viewer-image-container" id="viewer-image-container" title="Click image to return to main screen">
+      <img id="fullsize-emblem-image" class="fullsize-emblem-img" src="./Podium%20Emblem%20Logos%203%20Colors.png" onerror="this.src='https://raw.githubusercontent.com/rav-blue/images/12072a039e522cdb54ea4ab2d4dd52bbbd9df6e9/Podium%20Emblem%20Logos%203%20Colors.png'" alt="Ravenna Bluejays Official Podium Emblem - 3 Colors" />
+      <div class="viewer-hint">
+        <span>Click image or Back to return to main screen</span>
+      </div>
     </div>
   </div>
 
@@ -1088,10 +1241,82 @@ this file.
       });
     }
 
-    // Logo Click returns to main grid
-    logoHeaderBtn.addEventListener("click", () => {
+    // Full-Size Emblem Image Viewer Elements & Handlers
+    const imageViewerModal = document.getElementById("image-viewer-modal");
+    const imageViewerBackBtn = document.getElementById("image-viewer-back-btn");
+    const imageViewerCloseBtn = document.getElementById("image-viewer-close-btn");
+    const fullsizeEmblemImage = document.getElementById("fullsize-emblem-image");
+
+    function openImageViewer() {
+      if (imageViewerModal) {
+        imageViewerModal.style.display = "flex";
+        document.body.style.overflow = "hidden";
+      }
+    }
+
+    function closeImageViewer() {
+      if (imageViewerModal) {
+        imageViewerModal.style.display = "none";
+        document.body.style.overflow = "";
+      }
+      // Return to main screen of the app
       if (currentView !== "main") {
         renderMainGrid();
+      }
+    }
+
+    // Clicking top emblem opens full-sized image viewer
+    if (logoHeaderBtn) {
+      logoHeaderBtn.addEventListener("click", () => {
+        openImageViewer();
+      });
+      logoHeaderBtn.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          openImageViewer();
+        }
+      });
+    }
+
+    // Clicking back button goes back to main screen
+    if (imageViewerBackBtn) {
+      imageViewerBackBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        closeImageViewer();
+      });
+    }
+
+    // Clicking close button goes back to main screen
+    if (imageViewerCloseBtn) {
+      imageViewerCloseBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        closeImageViewer();
+      });
+    }
+
+    // Clicking full size image goes back to main screen
+    if (fullsizeEmblemImage) {
+      fullsizeEmblemImage.addEventListener("click", (e) => {
+        e.stopPropagation();
+        closeImageViewer();
+      });
+    }
+
+    // Clicking backdrop or container returns to main screen
+    if (imageViewerModal) {
+      imageViewerModal.addEventListener("click", (e) => {
+        if (e.target === imageViewerModal || e.target.id === "viewer-image-container") {
+          closeImageViewer();
+        }
+      });
+    }
+
+    // Escape key closes viewer and returns to main screen
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        if (imageViewerModal && imageViewerModal.style.display !== "none") {
+          closeImageViewer();
+        }
       }
     });
 

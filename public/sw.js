@@ -1,4 +1,4 @@
-const CACHE_NAME = 'ravcentral-v3';
+const CACHE_NAME = 'ravcentral-v4';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
@@ -8,7 +8,8 @@ const ASSETS_TO_CACHE = [
   './icon-512.png',
   './icon-maskable-192.png',
   './icon-maskable-512.png',
-  './apple-touch-icon.png'
+  './apple-touch-icon.png',
+  './Podium%20Emblem%20Logos%203%20Colors.png'
 ];
 
 self.addEventListener('install', (event) => {
