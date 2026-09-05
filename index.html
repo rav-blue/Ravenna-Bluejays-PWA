@@ -945,6 +945,18 @@ this file.
       text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
     }
 
+    /* Stacked Phone / Subtitle Label */
+    .grid-sublabel {
+      font-size: clamp(0.64rem, 2vw, 0.74rem);
+      font-weight: 600;
+      color: #93c5fd;
+      line-height: 1.15;
+      margin-top: 3px;
+      letter-spacing: 0.2px;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+      white-space: nowrap;
+    }
+
     /* Subgrid Badge Indicator */
     .subgrid-badge {
       position: absolute;
@@ -1175,6 +1187,11 @@ this file.
         font-size: clamp(0.92rem, 2vw, 1.08rem);
         font-weight: 700;
         line-height: 1.25;
+      }
+
+      .grid-sublabel {
+        font-size: clamp(0.78rem, 1.6vw, 0.9rem);
+        margin-top: 3px;
       }
 
       .subgrid-nav {
@@ -1513,13 +1530,21 @@ this file.
           items: [
             {
               title: "Elementary Phone",
+              subtitle: "308-452-3202",
               icon: `<svg viewBox="0 0 24 24"><circle cx="12" cy="6" r="3.5"/><line x1="12" y1="9.5" x2="12" y2="16"/><line x1="5" y1="11" x2="12" y2="13"/><line x1="12" y1="13" x2="19" y2="11"/><line x1="12" y1="16" x2="7" y2="22"/><line x1="12" y1="16" x2="17" y2="22"/></svg>`,
               url: "tel:3084523202"
             },
             {
               title: "High School Phone",
+              subtitle: "308-452-3249",
               icon: `<svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 2 6 3 6 3s6-1 6-3v-5"/></svg>`,
               url: "tel:3084523249"
+            },
+            {
+              title: "Fax",
+              subtitle: "308-452-3172",
+              icon: `<svg viewBox="0 0 24 24"><rect x="3" y="10" width="18" height="11" rx="2"/><path d="M7 10V4a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v6"/><circle cx="7" cy="14" r="1"/><circle cx="10" cy="14" r="1"/><circle cx="7" cy="17" r="1"/><circle cx="10" cy="17" r="1"/><path d="M14 14h4v4h-4z"/></svg>`,
+              url: "tel:3084523172"
             }
           ]
         },
@@ -1591,6 +1616,7 @@ this file.
             ${item.hasSubgrid ? '<div class="subgrid-badge"></div>' : ''}
             <div class="grid-icon">${item.icon}</div>
             <div class="grid-label">${item.title}</div>
+            ${item.subtitle ? `<div class="grid-sublabel">${item.subtitle}</div>` : ''}
           </button>
         `;
       });
@@ -1635,6 +1661,7 @@ this file.
           <button class="grid-card subgrid-card" data-idx="${idx}">
             <div class="grid-icon">${sub.icon}</div>
             <div class="grid-label">${sub.title}</div>
+            ${sub.subtitle ? `<div class="grid-sublabel">${sub.subtitle}</div>` : ''}
           </button>
         `;
       });
