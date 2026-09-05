@@ -55,7 +55,7 @@ this file.
   <title>RavCentral</title>
   
   <!-- PWA & Mobile Capabilities -->
-  <link rel="manifest" href="/manifest.json" />
+  <link rel="manifest" href="./manifest.json" />
   <meta name="theme-color" content="#112d82" />
   <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -64,10 +64,10 @@ this file.
   <meta property="og:title" content="RavCentral" />
   <meta name="description" content="RavCentral - Official mobile-first Progressive Web App for Ravenna Bluejays with school links, directories, and resources." />
   <meta property="og:description" content="RavCentral - Official mobile-first Progressive Web App for Ravenna Bluejays with school links, directories, and resources." />
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-  <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
-  <link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png" />
-  <link rel="icon" type="image/png" href="/icon-192.png" />
+  <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="./icon-192.png" />
+  <link rel="icon" type="image/png" sizes="512x512" href="./icon-512.png" />
+  <link rel="icon" type="image/png" href="./icon-192.png" />
 
   <script>
     // Early capture for PWA install prompt to avoid race conditions
@@ -1169,7 +1169,7 @@ this file.
   <!-- Splash / Loading Screen -->
   <div id="splash-screen">
     <div class="splash-logo-wrap">
-      <img src="./logo.png" alt="Ravenna Bluejays Official Emblem" onerror="this.src='https://raw.githubusercontent.com/rav-blue/images/12072a039e522cdb54ea4ab2d4dd52bbbd9df6e9/Podium%20Emblem%20Logos%203%20Colors.png'" width="140" height="140" />
+      <img src="./logo.png" alt="RavCentral Logo" title="RavCentral Logo" onerror="this.src='https://raw.githubusercontent.com/rav-blue/images/12072a039e522cdb54ea4ab2d4dd52bbbd9df6e9/Podium%20Emblem%20Logos%203%20Colors.png'" width="140" height="140" />
     </div>
     <div class="splash-title">Ravenna Bluejays</div>
     <div class="splash-sub">RavCentral</div>
@@ -1184,7 +1184,7 @@ this file.
     <!-- Top Title Header -->
     <header>
       <div class="header-logo-badge" id="logo-header-btn" role="button" tabindex="0" title="Click to view full-size emblem" aria-label="Click to view full-size emblem">
-        <img src="./logo.png" alt="Ravenna Bluejays Official Emblem" onerror="this.src='https://raw.githubusercontent.com/rav-blue/images/12072a039e522cdb54ea4ab2d4dd52bbbd9df6e9/Podium%20Emblem%20Logos%203%20Colors.png'" width="175" height="110" />
+        <img src="./logo.png" alt="RavCentral Logo" title="RavCentral Logo" onerror="this.src='https://raw.githubusercontent.com/rav-blue/images/12072a039e522cdb54ea4ab2d4dd52bbbd9df6e9/Podium%20Emblem%20Logos%203%20Colors.png'" width="175" height="110" />
       </div>
       <h1 class="header-title">Ravenna Bluejays</h1>
       <div class="header-subtitle">RavCentral</div>
@@ -1223,7 +1223,7 @@ this file.
     <div class="install-modal-card">
       <button class="install-modal-close" id="install-modal-close-btn" aria-label="Close">&times;</button>
       <div class="install-modal-icon">
-        <img src="/emblem-logo.png" alt="RavCentral Logo" onerror="this.onerror=null;this.src='/Podium%20Emblem%20Logos%203%20Colors.png';this.onerror=function(){this.src='https://raw.githubusercontent.com/rav-blue/images/12072a039e522cdb54ea4ab2d4dd52bbbd9df6e9/Podium%20Emblem%20Logos%203%20Colors.png'};" width="96" height="60" />
+        <img src="./emblem-logo.png" alt="RavCentral Logo" onerror="this.onerror=null;this.src='./logo.png';this.onerror=function(){this.src='https://raw.githubusercontent.com/rav-blue/images/12072a039e522cdb54ea4ab2d4dd52bbbd9df6e9/Podium%20Emblem%20Logos%203%20Colors.png'};" width="96" height="60" />
       </div>
       <h3 class="install-modal-title">Install RavCentral</h3>
       <p class="install-modal-desc">Install our official web app to your home screen or desktop for fast, one-tap access.</p>
@@ -1246,11 +1246,13 @@ this file.
           <svg id="troubleshoot-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
         <div class="install-troubleshoot-body" id="install-troubleshoot-body" style="display: none;">
-          <p><span class="badge">Fix 1</span><strong>Use "Add to Home screen"</strong><br>
-          In Chrome, tap the <strong>&vellip; (three dots)</strong> menu and choose <strong>"Add to Home screen"</strong> (or "Create shortcut") instead of "Install app". This bypasses Google Play WebAPK restrictions (very common on school accounts) and installs the standalone app instantly.</p>
-          <p><span class="badge">Fix 2</span><strong>Uninstall Residual App from Android Settings</strong><br>
-          Removing an icon from the home screen does not uninstall it from Android. Go to phone <strong>Settings &gt; Apps &gt; See all apps &gt; RavCentral</strong> and tap <strong>Uninstall</strong>.</p>
-          <p><span class="badge">Fix 3</span><strong>Clear Chrome Site Data</strong><br>
+          <p><span class="badge">Samsung Fix</span><strong>Samsung S24/S25 "Auto Blocker"</strong><br>
+          On Samsung Galaxy devices (One UI 6 &amp; 7), Samsung's new <strong>Auto Blocker</strong> feature blocks web app APK installation by default. To allow installation, go to phone <strong>Settings &gt; Security and privacy &gt; Auto Blocker</strong> and turn it <strong>Off</strong> temporarily (or turn off Maximum Restrictions), then tap Install.</p>
+          <p><span class="badge">Alternative</span><strong>Use "Add to Home screen"</strong><br>
+          In Chrome, tap the <strong>&vellip; (three dots)</strong> menu and select <strong>"Add to Home screen"</strong> (or "Create shortcut"). This bypasses APK restrictions and adds the standalone app directly to your home screen.</p>
+          <p><span class="badge">Residual App</span><strong>Uninstall from Android Settings</strong><br>
+          If previously installed, dragging the icon off the home screen may leave residual data in Android. Go to phone <strong>Settings &gt; Apps &gt; See all apps &gt; RavCentral</strong> and tap <strong>Uninstall</strong>.</p>
+          <p><span class="badge">Reset Cache</span><strong>Clear Site Data in Chrome</strong><br>
           In Chrome address bar, tap the lock/tune icon &gt; <strong>Site settings &gt; Clear &amp; reset data</strong>, then refresh.</p>
         </div>
       </div>
@@ -1907,7 +1909,7 @@ this file.
     // Register PWA Service Worker
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js', { scope: '/' }).then(reg => {
+        navigator.serviceWorker.register('./sw.js').then(reg => {
           console.log('RavCentral SW registered with scope:', reg.scope);
           reg.update();
         }).catch(err => {

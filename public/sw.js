@@ -1,18 +1,17 @@
-const CACHE_NAME = 'ravcentral-v7';
+const CACHE_NAME = 'ravcentral-v8';
 const ASSETS_TO_CACHE = [
-  '/',
-  '/?pwa=1',
-  '/index.html',
-  '/manifest.json',
-  '/manifest.webmanifest',
-  '/apple-touch-icon.png',
-  '/icon-192.png',
-  '/icon-512.png',
-  '/icon-maskable-192.png',
-  '/icon-maskable-512.png',
-  '/emblem-logo.png',
-  '/Podium%20Emblem%20Logos%203%20Colors.png',
-  '/logo.png'
+  './',
+  './index.html',
+  './manifest.json',
+  './manifest.webmanifest',
+  './apple-touch-icon.png',
+  './icon-192.png',
+  './icon-512.png',
+  './icon-maskable-192.png',
+  './icon-maskable-512.png',
+  './emblem-logo.png',
+  './Podium%20Emblem%20Logos%203%20Colors.png',
+  './logo.png'
 ];
 
 self.addEventListener('install', (event) => {
@@ -73,7 +72,7 @@ self.addEventListener('fetch', (event) => {
         return networkResponse;
       }).catch(async () => {
         if (event.request.mode === 'navigate') {
-          return (await caches.match('/index.html')) || (await caches.match('/'));
+          return (await caches.match('./index.html')) || (await caches.match('./'));
         }
       });
     })
