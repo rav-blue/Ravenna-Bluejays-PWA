@@ -51,7 +51,7 @@ this file.
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>RavCentral</title>
   
   <!-- PWA & Mobile Capabilities -->
@@ -90,12 +90,11 @@ this file.
 
     html, body {
       width: 100%;
-      height: 100%;
+      min-height: 100%;
       overflow-x: hidden;
       font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       background-color: #0a0b0f;
       color: #ffffff;
-      touch-action: manipulation;
     }
 
     /* Full-Screen Deep Blue, Black & Gray Background */
@@ -462,18 +461,18 @@ this file.
       left: 0;
       width: 100vw;
       height: 100vh;
-      background: rgba(4, 7, 14, 0.95);
+      background: rgba(4, 7, 14, 0.96);
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
       z-index: 100000;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: space-between;
-      padding: env(safe-area-inset-top, 14px) 16px env(safe-area-inset-bottom, 16px) 16px;
+      justify-content: flex-start;
+      padding: env(safe-area-inset-top, 10px) 12px env(safe-area-inset-bottom, 12px) 12px;
       animation: viewerFadeIn 0.2s ease-out;
       overflow: hidden;
-      touch-action: manipulation;
+      touch-action: pan-x pan-y pinch-zoom;
     }
 
     @keyframes viewerFadeIn {
@@ -487,8 +486,9 @@ this file.
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: 10px;
       padding: 6px 4px 10px 4px;
-      z-index: 10;
+      z-index: 20;
       flex-shrink: 0;
     }
 
@@ -496,17 +496,18 @@ this file.
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      padding: 8px 18px;
+      padding: 7px 16px;
       background: linear-gradient(135deg, #112d82 0%, #1e40af 100%);
       border: 1px solid rgba(165, 171, 189, 0.5);
       border-radius: 20px;
       color: #ffffff;
-      font-size: 0.92rem;
+      font-size: 0.88rem;
       font-weight: 700;
       cursor: pointer;
       backdrop-filter: blur(8px);
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
       transition: all 0.2s ease;
+      flex-shrink: 0;
     }
 
     .viewer-back-btn:hover {
@@ -520,24 +521,76 @@ this file.
     }
 
     .viewer-title {
-      font-size: 0.92rem;
-      font-weight: 600;
-      color: #cbd5e1;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #f1f5f9;
       text-align: center;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      padding: 0 10px;
+      padding: 0 6px;
+      letter-spacing: 0.3px;
+    }
+
+    .viewer-controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .viewer-zoom-bar {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      background: rgba(15, 23, 42, 0.75);
+      border: 1px solid rgba(147, 197, 253, 0.3);
+      border-radius: 24px;
+      padding: 2px 6px;
+      backdrop-filter: blur(8px);
+    }
+
+    .viewer-zoom-btn {
+      background: transparent;
+      border: none;
+      color: #cbd5e1;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s, transform 0.1s;
+    }
+
+    .viewer-zoom-btn:hover {
+      background: rgba(255, 255, 255, 0.18);
+      color: #ffffff;
+    }
+
+    .viewer-zoom-btn:active {
+      transform: scale(0.92);
+    }
+
+    .viewer-zoom-level {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #93c5fd;
+      min-width: 38px;
+      text-align: center;
+      font-variant-numeric: tabular-nums;
+      user-select: none;
     }
 
     .viewer-close-btn {
       background: rgba(255, 255, 255, 0.08);
       border: 1px solid rgba(255, 255, 255, 0.18);
       color: #e2e8f0;
-      width: 38px;
-      height: 38px;
+      width: 36px;
+      height: 36px;
       border-radius: 50%;
-      font-size: 24px;
+      font-size: 22px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -553,41 +606,129 @@ this file.
     .viewer-image-container {
       flex: 1;
       width: 100%;
-      max-width: 1200px;
+      max-width: 1300px;
+      height: calc(100vh - 80px);
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
       overflow: hidden;
       position: relative;
-      cursor: pointer;
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: none;
+      cursor: grab;
     }
 
     .fullsize-emblem-img {
       max-width: 96vw;
-      max-height: calc(100vh - 130px);
+      max-height: calc(100vh - 90px);
       width: auto;
       height: auto;
       object-fit: contain;
-      border-radius: 12px;
+      border-radius: 8px;
       filter: drop-shadow(0 12px 36px rgba(0, 0, 0, 0.75));
-      transition: transform 0.2s ease;
+      transform-origin: center center;
+      transition: transform 0.08s ease-out;
       user-select: none;
       -webkit-user-drag: none;
     }
 
-    .fullsize-emblem-img:hover {
-      transform: scale(1.008);
+    .fullsize-emblem-img.grabbing {
+      cursor: grabbing;
+      transition: none;
     }
 
-    .viewer-hint {
-      margin-top: 10px;
-      font-size: 0.8rem;
-      color: #94a3b8;
-      text-align: center;
-      letter-spacing: 0.3px;
-      flex-shrink: 0;
-      opacity: 0.9;
+    /* Contact Us Address Card */
+    .contact-address-card {
+      width: 100%;
+      margin-top: 18px;
+      background: linear-gradient(145deg, rgba(17, 85, 160, 0.3) 0%, rgba(15, 23, 42, 0.85) 100%);
+      border: 1.5px solid rgba(147, 197, 253, 0.35);
+      border-radius: 18px;
+      padding: 16px 18px;
+      color: #ffffff;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+      text-align: left;
+    }
+
+    .contact-address-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(147, 197, 253, 0.65);
+      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.5), 0 0 20px rgba(17, 85, 160, 0.35);
+    }
+
+    .contact-address-card:active {
+      transform: scale(0.98);
+      background: rgba(17, 85, 160, 0.45);
+    }
+
+    .contact-address-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      border-bottom: 1px solid rgba(147, 197, 253, 0.18);
+      padding-bottom: 8px;
+    }
+
+    .contact-address-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.76rem;
+      font-weight: 700;
+      color: #93c5fd;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+    }
+
+    .contact-address-badge svg {
+      stroke: #60a5fa;
+    }
+
+    .contact-address-action-hint {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: rgba(17, 45, 130, 0.6);
+      border: 1px solid rgba(147, 197, 253, 0.4);
+      border-radius: 12px;
+      padding: 3px 8px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: #ffffff;
+    }
+
+    .contact-address-lines {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .contact-address-school {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: 0.2px;
+    }
+
+    .contact-address-street {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: #e2e8f0;
+    }
+
+    .contact-address-city {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: #e2e8f0;
     }
 
     /* Main View Area */
@@ -849,6 +990,103 @@ this file.
         font-size: 0.85rem;
       }
     }
+
+    /* Landscape Mode & Dynamic Orientation Optimization */
+    @media (orientation: landscape) and (max-height: 560px) {
+      #app-container {
+        max-width: 620px;
+        padding-top: max(6px, env(safe-area-inset-top));
+        padding-bottom: max(10px, env(safe-area-inset-bottom));
+        padding-left: max(12px, env(safe-area-inset-left));
+        padding-right: max(12px, env(safe-area-inset-right));
+      }
+
+      header {
+        margin-top: 2px;
+        margin-bottom: 10px;
+      }
+
+      .header-logo-badge img {
+        height: 60px;
+        max-width: 95px;
+      }
+
+      .header-title {
+        font-size: 1.25rem;
+      }
+
+      .header-subtitle {
+        font-size: 0.68rem;
+        margin-top: 1px;
+      }
+
+      .pwa-install-btn {
+        margin-top: 4px;
+        padding: 2px 10px;
+        font-size: 0.7rem;
+      }
+
+      .grid-3x3 {
+        gap: 8px;
+      }
+
+      .grid-card {
+        padding: 6px 4px;
+        border-radius: 14px;
+      }
+
+      .grid-icon {
+        width: 22px;
+        height: 22px;
+        margin-bottom: 3px;
+      }
+
+      .grid-label {
+        font-size: 0.68rem;
+      }
+
+      .motto-section {
+        margin-top: 10px;
+      }
+
+      .motto-primary {
+        font-size: 0.72rem;
+      }
+
+      .motto-secondary {
+        font-size: 0.68rem;
+      }
+
+      .contact-address-card {
+        margin-top: 10px;
+        padding: 10px 12px;
+      }
+
+      .contact-address-school {
+        font-size: 0.92rem;
+      }
+
+      .contact-address-street, .contact-address-city {
+        font-size: 0.82rem;
+      }
+
+      .viewer-header {
+        padding: 4px 4px 6px 4px;
+      }
+
+      .viewer-back-btn {
+        padding: 5px 12px;
+        font-size: 0.8rem;
+      }
+
+      .viewer-title {
+        font-size: 0.82rem;
+      }
+
+      .fullsize-emblem-img {
+        max-height: calc(100vh - 58px);
+      }
+    }
   </style>
 </head>
 <body>
@@ -935,21 +1173,32 @@ this file.
   </div>
 
   <!-- Full-Screen Emblem Image Viewer Modal -->
-  <div id="image-viewer-modal" class="image-viewer-overlay" style="display: none;" role="dialog" aria-modal="true" aria-label="Official Emblem Full Screen View">
+  <div id="image-viewer-modal" class="image-viewer-overlay" style="display: none;" role="dialog" aria-modal="true" aria-label="RavCentral Logo Full Screen View">
     <div class="viewer-header">
       <button id="image-viewer-back-btn" class="viewer-back-btn" aria-label="Back to main screen">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
         <span>Back</span>
       </button>
-      <div class="viewer-title">Ravenna Bluejays Official Emblem</div>
-      <button id="image-viewer-close-btn" class="viewer-close-btn" aria-label="Close viewer">&times;</button>
+      <div class="viewer-title" id="image-viewer-title">RavCentral Logo</div>
+      <div class="viewer-controls">
+        <div class="viewer-zoom-bar">
+          <button id="viewer-zoom-out" class="viewer-zoom-btn" title="Zoom Out" aria-label="Zoom Out">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16" y2="16"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+          </button>
+          <span id="viewer-zoom-level" class="viewer-zoom-level">100%</span>
+          <button id="viewer-zoom-in" class="viewer-zoom-btn" title="Zoom In" aria-label="Zoom In">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16" y2="16"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+          </button>
+          <button id="viewer-zoom-reset" class="viewer-zoom-btn" title="Reset Zoom" aria-label="Reset Zoom">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+          </button>
+        </div>
+        <button id="image-viewer-close-btn" class="viewer-close-btn" aria-label="Close viewer">&times;</button>
+      </div>
     </div>
 
-    <div class="viewer-image-container" id="viewer-image-container" title="Click image to return to main screen">
-      <img id="fullsize-emblem-image" class="fullsize-emblem-img" src="./Podium%20Emblem%20Logos%203%20Colors.png" onerror="this.src='https://raw.githubusercontent.com/rav-blue/images/12072a039e522cdb54ea4ab2d4dd52bbbd9df6e9/Podium%20Emblem%20Logos%203%20Colors.png'" alt="Ravenna Bluejays Official Podium Emblem - 3 Colors" />
-      <div class="viewer-hint">
-        <span>Click image or Back to return to main screen</span>
-      </div>
+    <div class="viewer-image-container" id="viewer-image-container">
+      <img id="fullsize-emblem-image" class="fullsize-emblem-img" src="./Podium%20Emblem%20Logos%203%20Colors.png" onerror="this.src='https://raw.githubusercontent.com/rav-blue/images/12072a039e522cdb54ea4ab2d4dd52bbbd9df6e9/Podium%20Emblem%20Logos%203%20Colors.png'" alt="RavCentral Logo" title="RavCentral Logo" draggable="false" />
     </div>
   </div>
 
@@ -1084,8 +1333,8 @@ this file.
           ]
         },
         {
-          id: "call_us",
-          title: "Call Us",
+          id: "contact_us",
+          title: "Contact Us",
           icon: `<svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>`,
           hasSubgrid: true,
           items: [
@@ -1219,6 +1468,32 @@ this file.
 
       html += `
           </div>
+      `;
+
+      // If Contact Us page, show School Address under the phone buttons
+      if (parentItem.id === "contact_us") {
+        html += `
+          <div class="contact-address-card" id="contact-address-btn" role="button" tabindex="0" title="Click to open school address in Maps / GPS">
+            <div class="contact-address-top">
+              <div class="contact-address-badge">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                <span>School Address</span>
+              </div>
+              <div class="contact-address-action-hint">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+                <span>Open in Maps</span>
+              </div>
+            </div>
+            <div class="contact-address-lines">
+              <div class="contact-address-school">Ravenna Public Schools</div>
+              <div class="contact-address-street">41750 Carthage Rd</div>
+              <div class="contact-address-city">Ravenna, NE 68869</div>
+            </div>
+          </div>
+        `;
+      }
+
+      html += `
         </div>
       `;
 
@@ -1239,16 +1514,107 @@ this file.
           }
         });
       });
+
+      // Address Card Click Listener (for Contact Us)
+      const addressBtn = document.getElementById("contact-address-btn");
+      if (addressBtn) {
+        addressBtn.addEventListener("click", () => {
+          openSchoolAddressInMaps();
+        });
+        addressBtn.addEventListener("keydown", (e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            openSchoolAddressInMaps();
+          }
+        });
+      }
     }
 
-    // Full-Size Emblem Image Viewer Elements & Handlers
+    // Opens School Address in device's default GPS/Map app or Google Maps
+    function openSchoolAddressInMaps() {
+      const address = "Ravenna Public Schools, 41750 Carthage Rd, Ravenna, NE 68869";
+      const encoded = encodeURIComponent(address);
+      const isApple = /iPhone|iPad|iPod|Macintosh/i.test(navigator.userAgent);
+      const isAndroid = /Android/i.test(navigator.userAgent);
+
+      showToast("Opening Maps / GPS...");
+
+      setTimeout(() => {
+        if (isApple) {
+          // Native Apple Maps for iOS and macOS
+          window.open(`https://maps.apple.com/?q=${encoded}&address=41750+Carthage+Rd,+Ravenna,+NE+68869`, "_blank", "noopener,noreferrer");
+        } else if (isAndroid) {
+          // Android device default GPS/Map intent with Google Maps fallback
+          const fallbackTimer = setTimeout(() => {
+            window.open(`https://www.google.com/maps/search/?api=1&query=${encoded}`, "_blank", "noopener,noreferrer");
+          }, 1200);
+          window.addEventListener("blur", () => clearTimeout(fallbackTimer), { once: true });
+          window.location.href = `geo:0,0?q=${encoded}`;
+        } else {
+          // Desktop / other devices use Google Maps web
+          window.open(`https://www.google.com/maps/search/?api=1&query=${encoded}`, "_blank", "noopener,noreferrer");
+        }
+      }, 150);
+    }
+
+    // Full-Size Emblem Image Viewer Elements & Interactive Zoom Controller
     const imageViewerModal = document.getElementById("image-viewer-modal");
     const imageViewerBackBtn = document.getElementById("image-viewer-back-btn");
     const imageViewerCloseBtn = document.getElementById("image-viewer-close-btn");
     const fullsizeEmblemImage = document.getElementById("fullsize-emblem-image");
+    const imageViewerContainer = document.getElementById("viewer-image-container");
+    const zoomInBtn = document.getElementById("viewer-zoom-in");
+    const zoomOutBtn = document.getElementById("viewer-zoom-out");
+    const zoomResetBtn = document.getElementById("viewer-zoom-reset");
+    const zoomLevelDisplay = document.getElementById("viewer-zoom-level");
+
+    let currentZoom = 1.0;
+    let panX = 0;
+    let panY = 0;
+    let isDragging = false;
+    let dragStartX = 0;
+    let dragStartY = 0;
+    let hasMoved = false;
+    let initialPinchDistance = 0;
+    let initialPinchZoom = 1.0;
+    let lastTapTime = 0;
+
+    function applyImageTransform() {
+      if (currentZoom < 0.6) currentZoom = 0.6;
+      if (currentZoom > 5.0) currentZoom = 5.0;
+
+      if (currentZoom <= 1.0) {
+        panX = 0;
+        panY = 0;
+      }
+
+      if (fullsizeEmblemImage) {
+        fullsizeEmblemImage.style.transform = `translate(${panX}px, ${panY}px) scale(${currentZoom})`;
+      }
+      if (zoomLevelDisplay) {
+        zoomLevelDisplay.textContent = `${Math.round(currentZoom * 100)}%`;
+      }
+    }
+
+    function setZoom(newZoom) {
+      currentZoom = Math.min(5.0, Math.max(0.6, Math.round(newZoom * 100) / 100));
+      if (currentZoom <= 1.0) {
+        panX = 0;
+        panY = 0;
+      }
+      applyImageTransform();
+    }
+
+    function resetZoom() {
+      currentZoom = 1.0;
+      panX = 0;
+      panY = 0;
+      applyImageTransform();
+    }
 
     function openImageViewer() {
       if (imageViewerModal) {
+        resetZoom();
         imageViewerModal.style.display = "flex";
         document.body.style.overflow = "hidden";
       }
@@ -1258,11 +1624,141 @@ this file.
       if (imageViewerModal) {
         imageViewerModal.style.display = "none";
         document.body.style.overflow = "";
+        resetZoom();
       }
       // Return to main screen of the app
       if (currentView !== "main") {
         renderMainGrid();
       }
+    }
+
+    // Zoom Buttons
+    if (zoomInBtn) {
+      zoomInBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        setZoom(currentZoom + 0.35);
+      });
+    }
+
+    if (zoomOutBtn) {
+      zoomOutBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        setZoom(currentZoom - 0.35);
+      });
+    }
+
+    if (zoomResetBtn) {
+      zoomResetBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        resetZoom();
+      });
+    }
+
+    // Mouse Wheel Zoom on image container
+    if (imageViewerContainer) {
+      imageViewerContainer.addEventListener("wheel", (e) => {
+        e.preventDefault();
+        const delta = e.deltaY > 0 ? -0.2 : 0.2;
+        setZoom(currentZoom + delta);
+      }, { passive: false });
+
+      // Mouse drag to pan when zoomed
+      imageViewerContainer.addEventListener("mousedown", (e) => {
+        if (e.target.closest(".viewer-header") || e.target.closest(".viewer-controls") || e.target.closest(".viewer-back-btn")) {
+          return;
+        }
+        isDragging = true;
+        hasMoved = false;
+        dragStartX = e.clientX - panX;
+        dragStartY = e.clientY - panY;
+        if (fullsizeEmblemImage && currentZoom > 1.0) {
+          fullsizeEmblemImage.classList.add("grabbing");
+        }
+      });
+
+      window.addEventListener("mousemove", (e) => {
+        if (isDragging) {
+          const dx = Math.abs((e.clientX - dragStartX) - panX);
+          const dy = Math.abs((e.clientY - dragStartY) - panY);
+          if (dx > 4 || dy > 4) {
+            hasMoved = true;
+          }
+          if (currentZoom > 1.0) {
+            panX = e.clientX - dragStartX;
+            panY = e.clientY - dragStartY;
+            applyImageTransform();
+          }
+        }
+      });
+
+      window.addEventListener("mouseup", () => {
+        if (isDragging) {
+          isDragging = false;
+          if (fullsizeEmblemImage) {
+            fullsizeEmblemImage.classList.remove("grabbing");
+          }
+        }
+      });
+
+      // Touch events: Pinch to zoom & touch drag to pan
+      function getTouchDistance(t1, t2) {
+        const dx = t1.clientX - t2.clientX;
+        const dy = t1.clientY - t2.clientY;
+        return Math.sqrt(dx * dx + dy * dy);
+      }
+
+      imageViewerContainer.addEventListener("touchstart", (e) => {
+        if (e.touches.length === 2) {
+          initialPinchDistance = getTouchDistance(e.touches[0], e.touches[1]);
+          initialPinchZoom = currentZoom;
+        } else if (e.touches.length === 1) {
+          isDragging = true;
+          hasMoved = false;
+          dragStartX = e.touches[0].clientX - panX;
+          dragStartY = e.touches[0].clientY - panY;
+        }
+      }, { passive: false });
+
+      imageViewerContainer.addEventListener("touchmove", (e) => {
+        if (e.touches.length === 2 && initialPinchDistance > 0) {
+          e.preventDefault();
+          const dist = getTouchDistance(e.touches[0], e.touches[1]);
+          const ratio = dist / initialPinchDistance;
+          setZoom(initialPinchZoom * ratio);
+        } else if (e.touches.length === 1 && isDragging && currentZoom > 1.0) {
+          e.preventDefault();
+          hasMoved = true;
+          panX = e.touches[0].clientX - dragStartX;
+          panY = e.touches[0].clientY - dragStartY;
+          applyImageTransform();
+        }
+      }, { passive: false });
+
+      imageViewerContainer.addEventListener("touchend", (e) => {
+        if (e.touches.length < 2) {
+          initialPinchDistance = 0;
+        }
+        if (e.touches.length === 0) {
+          isDragging = false;
+          // Double-tap to zoom toggle
+          const now = Date.now();
+          if (!hasMoved && now - lastTapTime < 300) {
+            if (currentZoom > 1.2) {
+              resetZoom();
+            } else {
+              setZoom(2.2);
+            }
+            lastTapTime = 0;
+            return;
+          }
+          lastTapTime = now;
+
+          // Single tap on image at 1.0x (without dragging) closes viewer and returns to main screen
+          if (!hasMoved && currentZoom <= 1.05 && (e.target === fullsizeEmblemImage || e.target === imageViewerContainer)) {
+            closeImageViewer();
+          }
+        }
+      });
     }
 
     // Clicking top emblem opens full-sized image viewer
@@ -1294,18 +1790,11 @@ this file.
       });
     }
 
-    // Clicking full size image goes back to main screen
+    // Clicking full size image goes back to main screen if at normal zoom
     if (fullsizeEmblemImage) {
       fullsizeEmblemImage.addEventListener("click", (e) => {
         e.stopPropagation();
-        closeImageViewer();
-      });
-    }
-
-    // Clicking backdrop or container returns to main screen
-    if (imageViewerModal) {
-      imageViewerModal.addEventListener("click", (e) => {
-        if (e.target === imageViewerModal || e.target.id === "viewer-image-container") {
+        if (!hasMoved && currentZoom <= 1.05) {
           closeImageViewer();
         }
       });
