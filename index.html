@@ -55,7 +55,7 @@ this file.
   <title>RavCentral</title>
   
   <!-- PWA & Mobile Capabilities -->
-  <link rel="manifest" href="./manifest.json" />
+  <link rel="manifest" href="/manifest.json" />
   <meta name="theme-color" content="#112d82" />
   <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -64,10 +64,10 @@ this file.
   <meta property="og:title" content="RavCentral" />
   <meta name="description" content="RavCentral - Official mobile-first Progressive Web App for Ravenna Bluejays with school links, directories, and resources." />
   <meta property="og:description" content="RavCentral - Official mobile-first Progressive Web App for Ravenna Bluejays with school links, directories, and resources." />
-  <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
-  <link rel="icon" type="image/png" sizes="192x192" href="./icon-192.png" />
-  <link rel="icon" type="image/png" sizes="512x512" href="./icon-512.png" />
-  <link rel="icon" type="image/png" href="./logo.png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
+  <link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png" />
+  <link rel="icon" type="image/png" href="/icon-192.png" />
 
   <script>
     // Early capture for PWA install prompt to avoid race conditions
@@ -367,12 +367,20 @@ this file.
       padding: 4px 8px;
     }
 
-    .install-modal-icon img {
-      width: 68px;
-      height: 68px;
-      object-fit: contain;
-      filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.5));
+    .install-modal-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
       margin-bottom: 12px;
+    }
+
+    .install-modal-icon img {
+      width: auto;
+      height: 64px;
+      max-width: 140px;
+      object-fit: contain;
+      filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.5));
+      border-radius: 8px;
     }
 
     .install-modal-title {
@@ -1152,7 +1160,7 @@ this file.
     <div class="install-modal-card">
       <button class="install-modal-close" id="install-modal-close-btn" aria-label="Close">&times;</button>
       <div class="install-modal-icon">
-        <img src="./logo.png" alt="RavCentral Emblem" width="68" height="68" />
+        <img src="/Podium%20Emblem%20Logos%203%20Colors.png" alt="RavCentral Logo" onerror="this.onerror=null;this.src='https://raw.githubusercontent.com/rav-blue/images/12072a039e522cdb54ea4ab2d4dd52bbbd9df6e9/Podium%20Emblem%20Logos%203%20Colors.png'" width="96" height="60" />
       </div>
       <h3 class="install-modal-title">Install RavCentral</h3>
       <p class="install-modal-desc">Install our official web app to your home screen or desktop for fast, one-tap access.</p>
@@ -1820,8 +1828,9 @@ this file.
     // Register PWA Service Worker
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./sw.js').then(reg => {
+        navigator.serviceWorker.register('/sw.js', { scope: '/' }).then(reg => {
           console.log('RavCentral SW registered with scope:', reg.scope);
+          reg.update();
         }).catch(err => {
           console.log('SW registration error:', err);
         });
@@ -1880,20 +1889,42 @@ this file.
 
     function renderInstallSteps() {
       if (!installStepsContent) return;
+      const inIframe = window.self !== window.top;
+      const iframeAlert = inIframe ? `
+        <div style="background: rgba(30, 58, 138, 0.45); border: 1px solid rgba(147, 197, 253, 0.5); border-radius: 10px; padding: 10px 12px; margin-bottom: 14px; text-align: left; font-size: 0.82rem; color: #dbeafe;">
+          <strong style="color: #ffffff; display: block; margin-bottom: 4px;">Tip: Preview Mode Detected</strong>
+          PWA installation requires viewing the app directly in its own browser window:
+          <a href="${window.location.href}" target="_blank" rel="noopener noreferrer" style="display: block; margin-top: 8px; text-align: center; background: #2563eb; color: #ffffff; padding: 7px 12px; border-radius: 8px; font-weight: 700; text-decoration: none;">Open App in New Tab ↗</a>
+        </div>
+      ` : '';
+
+      const isAndroid = /Android/i.test(navigator.userAgent);
+
       if (isIOS) {
         installStepsContent.innerHTML = `
+          ${iframeAlert}
           <ol>
             <li>Tap the <strong>Share</strong> button (box with upward arrow <svg style="display:inline-block;vertical-align:middle;" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>) in Safari.</li>
             <li>Scroll down and tap <strong>Add to Home Screen</strong> (➕).</li>
             <li>Tap <strong>Add</strong> in the top-right corner.</li>
           </ol>
         `;
+      } else if (isAndroid) {
+        installStepsContent.innerHTML = `
+          ${iframeAlert}
+          <ol>
+            <li>Tap the Chrome menu (<strong>&vellip;</strong>) in the top-right corner.</li>
+            <li>Select <strong>Install app</strong> (or <strong>Add to Home screen</strong>).</li>
+            <li>Tap <strong>Install</strong> to add RavCentral to your phone's apps.</li>
+          </ol>
+        `;
       } else {
         installStepsContent.innerHTML = `
+          ${iframeAlert}
           <ol>
             <li>Look for the <strong>Install icon</strong> (⊕ or ⬇) in the right side of Chrome's address bar.</li>
-            <li>Or tap the Chrome menu (<strong>&vellip;</strong>) &gt; select <strong>Install RavCentral</strong> (or <em>Save and share &gt; Install page as app</em>).</li>
-            <li><em>Note:</em> Make sure you are viewing this page directly in its own browser tab (not inside an editor preview).</li>
+            <li>Or tap the Chrome menu (<strong>&vellip;</strong>) &gt; select <strong>Install RavCentral</strong>.</li>
+            <li>Click <strong>Install</strong> to complete installation.</li>
           </ol>
         `;
       }
@@ -1927,11 +1958,17 @@ this file.
 
     async function triggerPrompt() {
       if (deferredPrompt) {
-        deferredPrompt.prompt();
-        const choiceResult = await deferredPrompt.userChoice;
-        if (choiceResult && choiceResult.outcome === 'accepted') {
-          if (installBtn) installBtn.style.display = "none";
-          closeInstallModal();
+        try {
+          deferredPrompt.prompt();
+          const choiceResult = await deferredPrompt.userChoice;
+          if (choiceResult && choiceResult.outcome === 'accepted') {
+            if (installBtn) installBtn.style.display = "none";
+            closeInstallModal();
+            showToast('Installing RavCentral...');
+          }
+        } catch (err) {
+          console.warn('Install prompt error:', err);
+          openInstallModal();
         }
         deferredPrompt = null;
         window.__deferredPrompt = null;
