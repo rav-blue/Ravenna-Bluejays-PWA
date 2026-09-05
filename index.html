@@ -445,6 +445,69 @@ this file.
       margin-bottom: 0;
     }
 
+    .install-troubleshoot-box {
+      margin-top: 12px;
+      margin-bottom: 16px;
+      text-align: left;
+      background: rgba(30, 41, 59, 0.45);
+      border: 1px solid rgba(148, 163, 184, 0.25);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .install-troubleshoot-toggle {
+      width: 100%;
+      padding: 9px 12px;
+      background: rgba(30, 58, 138, 0.25);
+      border: none;
+      color: #93c5fd;
+      font-size: 0.8rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+      cursor: pointer;
+      text-align: left;
+      transition: background 0.15s;
+    }
+
+    .install-troubleshoot-toggle:hover {
+      background: rgba(30, 58, 138, 0.45);
+    }
+
+    .install-troubleshoot-body {
+      padding: 10px 12px;
+      font-size: 0.77rem;
+      color: #cbd5e1;
+      line-height: 1.45;
+      border-top: 1px solid rgba(148, 163, 184, 0.2);
+      background: rgba(15, 23, 42, 0.75);
+    }
+
+    .install-troubleshoot-body p {
+      margin: 0 0 8px 0;
+    }
+
+    .install-troubleshoot-body p:last-child {
+      margin-bottom: 0;
+    }
+
+    .install-troubleshoot-body strong {
+      color: #ffffff;
+    }
+
+    .install-troubleshoot-body .badge {
+      display: inline-block;
+      background: #1e3a8a;
+      color: #93c5fd;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      margin-right: 4px;
+    }
+
     .install-modal-dismiss {
       width: 100%;
       padding: 10px;
@@ -1160,7 +1223,7 @@ this file.
     <div class="install-modal-card">
       <button class="install-modal-close" id="install-modal-close-btn" aria-label="Close">&times;</button>
       <div class="install-modal-icon">
-        <img src="/Podium%20Emblem%20Logos%203%20Colors.png" alt="RavCentral Logo" onerror="this.onerror=null;this.src='https://raw.githubusercontent.com/rav-blue/images/12072a039e522cdb54ea4ab2d4dd52bbbd9df6e9/Podium%20Emblem%20Logos%203%20Colors.png'" width="96" height="60" />
+        <img src="/emblem-logo.png" alt="RavCentral Logo" onerror="this.onerror=null;this.src='/Podium%20Emblem%20Logos%203%20Colors.png';this.onerror=function(){this.src='https://raw.githubusercontent.com/rav-blue/images/12072a039e522cdb54ea4ab2d4dd52bbbd9df6e9/Podium%20Emblem%20Logos%203%20Colors.png'};" width="96" height="60" />
       </div>
       <h3 class="install-modal-title">Install RavCentral</h3>
       <p class="install-modal-desc">Install our official web app to your home screen or desktop for fast, one-tap access.</p>
@@ -1174,6 +1237,22 @@ this file.
 
       <div class="install-steps" id="install-steps-content">
         <!-- Injected dynamically based on browser/device -->
+      </div>
+
+      <!-- Troubleshooting accordion for "cannot be installed" error -->
+      <div class="install-troubleshoot-box">
+        <button type="button" class="install-troubleshoot-toggle" id="install-troubleshoot-toggle" aria-expanded="false">
+          <span>⚠️ Getting "This app cannot be installed"?</span>
+          <svg id="troubleshoot-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="install-troubleshoot-body" id="install-troubleshoot-body" style="display: none;">
+          <p><span class="badge">Fix 1</span><strong>Use "Add to Home screen"</strong><br>
+          In Chrome, tap the <strong>&vellip; (three dots)</strong> menu and choose <strong>"Add to Home screen"</strong> (or "Create shortcut") instead of "Install app". This bypasses Google Play WebAPK restrictions (very common on school accounts) and installs the standalone app instantly.</p>
+          <p><span class="badge">Fix 2</span><strong>Uninstall Residual App from Android Settings</strong><br>
+          Removing an icon from the home screen does not uninstall it from Android. Go to phone <strong>Settings &gt; Apps &gt; See all apps &gt; RavCentral</strong> and tap <strong>Uninstall</strong>.</p>
+          <p><span class="badge">Fix 3</span><strong>Clear Chrome Site Data</strong><br>
+          In Chrome address bar, tap the lock/tune icon &gt; <strong>Site settings &gt; Clear &amp; reset data</strong>, then refresh.</p>
+        </div>
       </div>
       
       <button class="install-modal-dismiss" id="install-modal-dismiss-btn">Got it</button>
@@ -1915,7 +1994,8 @@ this file.
           <ol>
             <li>Tap the Chrome menu (<strong>&vellip;</strong>) in the top-right corner.</li>
             <li>Select <strong>Install app</strong> (or <strong>Add to Home screen</strong>).</li>
-            <li>Tap <strong>Install</strong> to add RavCentral to your phone's apps.</li>
+            <li>If prompted, tap <strong>Install</strong>.</li>
+            <li style="margin-top: 8px; color: #93c5fd; font-size: 0.8rem; background: rgba(30, 58, 138, 0.3); padding: 6px 8px; border-radius: 6px;">💡 <strong>Trouble installing?</strong> Tap <strong>&vellip; &gt; Add to Home screen</strong> to install the standalone app immediately without Play Store restrictions!</li>
           </ol>
         `;
       } else {
@@ -1956,6 +2036,20 @@ this file.
       });
     }
 
+    const troubleshootToggle = document.getElementById("install-troubleshoot-toggle");
+    const troubleshootBody = document.getElementById("install-troubleshoot-body");
+    const troubleshootArrow = document.getElementById("troubleshoot-arrow");
+    if (troubleshootToggle && troubleshootBody) {
+      troubleshootToggle.addEventListener('click', () => {
+        const isHidden = troubleshootBody.style.display === "none";
+        troubleshootBody.style.display = isHidden ? "block" : "none";
+        troubleshootToggle.setAttribute("aria-expanded", isHidden ? "true" : "false");
+        if (troubleshootArrow) {
+          troubleshootArrow.style.transform = isHidden ? "rotate(180deg)" : "rotate(0deg)";
+        }
+      });
+    }
+
     async function triggerPrompt() {
       if (deferredPrompt) {
         try {
@@ -1965,6 +2059,8 @@ this file.
             if (installBtn) installBtn.style.display = "none";
             closeInstallModal();
             showToast('Installing RavCentral...');
+          } else {
+            openInstallModal();
           }
         } catch (err) {
           console.warn('Install prompt error:', err);

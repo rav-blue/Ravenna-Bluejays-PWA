@@ -1,15 +1,15 @@
 {
-  "id": "/",
+  "id": "/?pwa=1",
   "name": "RavCentral",
   "short_name": "RavCentral",
   "description": "RavCentral - Ravenna Public Schools Official PWA",
-  "start_url": "/",
+  "start_url": "/?pwa=1",
   "scope": "/",
   "display": "standalone",
   "background_color": "#0a0b0f",
   "theme_color": "#112d82",
-  "orientation": "any",
   "prefer_related_applications": false,
+  "categories": ["education", "reference"],
   "icons": [
     {
       "src": "/icon-192.png",
@@ -37,3 +37,4 @@
     }
   ]
 }
+

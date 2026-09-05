@@ -1,6 +1,7 @@
-const CACHE_NAME = 'ravcentral-v6';
+const CACHE_NAME = 'ravcentral-v7';
 const ASSETS_TO_CACHE = [
   '/',
+  '/?pwa=1',
   '/index.html',
   '/manifest.json',
   '/manifest.webmanifest',
@@ -9,6 +10,7 @@ const ASSETS_TO_CACHE = [
   '/icon-512.png',
   '/icon-maskable-192.png',
   '/icon-maskable-512.png',
+  '/emblem-logo.png',
   '/Podium%20Emblem%20Logos%203%20Colors.png',
   '/logo.png'
 ];
