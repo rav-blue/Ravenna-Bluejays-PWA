@@ -142,7 +142,8 @@ this file.
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-      padding: max(16px, env(safe-area-inset-top)) 16px max(20px, env(safe-area-inset-bottom)) 16px;
+      justify-content: flex-start;
+      padding: max(10px, env(safe-area-inset-top)) 14px max(12px, env(safe-area-inset-bottom)) 14px;
       z-index: 1;
       position: relative;
     }
@@ -235,8 +236,8 @@ this file.
       display: flex;
       flex-direction: column;
       align-items: center;
-      margin-top: 8px;
-      margin-bottom: 20px;
+      margin-top: 2px;
+      margin-bottom: 12px;
       text-align: center;
     }
 
@@ -246,7 +247,7 @@ this file.
       background: transparent;
       border: none;
       padding: 0;
-      margin-bottom: 3px;
+      margin-bottom: 2px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -265,15 +266,15 @@ this file.
 
     .header-logo-badge img {
       width: auto;
-      height: 110px;
-      max-width: 175px;
+      height: 95px;
+      max-width: 155px;
       object-fit: contain;
       display: block;
       filter: none;
     }
 
     .header-title {
-      font-size: 1.8rem;
+      font-size: 1.65rem;
       font-weight: 800;
       color: #ffffff;
       letter-spacing: 0.5px;
@@ -283,12 +284,12 @@ this file.
     }
 
     .header-subtitle {
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       font-weight: 600;
       color: #93c5fd;
       letter-spacing: 1.5px;
       text-transform: uppercase;
-      margin-top: 4px;
+      margin-top: 3px;
       opacity: 0.9;
     }
 
@@ -297,13 +298,13 @@ this file.
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      margin-top: 10px;
-      padding: 6px 14px;
+      margin-top: 6px;
+      padding: 4px 12px;
       background: rgba(17, 45, 130, 0.55);
       border: 1px solid rgba(165, 171, 189, 0.4);
       border-radius: 20px;
       color: #ffffff;
-      font-size: 0.78rem;
+      font-size: 0.75rem;
       font-weight: 600;
       cursor: pointer;
       backdrop-filter: blur(8px);
@@ -805,7 +806,7 @@ this file.
     /* Main View Area */
     .view-container {
       width: 100%;
-      flex: 1;
+      flex: 0 0 auto;
       display: flex;
       flex-direction: column;
     }
@@ -952,27 +953,27 @@ this file.
 
     /* Text Below Grid */
     .motto-section {
-      margin-top: 24px;
+      margin-top: 12px;
       text-align: center;
-      padding: 0 8px;
+      padding: 0 6px;
     }
 
     .motto-primary {
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       font-weight: 700;
       color: #ffffff;
       letter-spacing: 0.3px;
-      line-height: 1.45;
+      line-height: 1.4;
       text-transform: uppercase;
       text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
-      margin-bottom: 6px;
+      margin-bottom: 4px;
     }
 
     .motto-secondary {
-      font-size: 0.8rem;
+      font-size: 0.76rem;
       font-weight: 500;
       color: #93c5fd;
-      line-height: 1.4;
+      line-height: 1.35;
     }
 
     .motto-secondary a {
@@ -1028,11 +1029,11 @@ this file.
 
     /* Footer */
     footer {
-      margin-top: auto;
-      padding-top: 20px;
-      padding-bottom: 8px;
+      margin-top: 8px;
+      padding-top: 6px;
+      padding-bottom: 4px;
       text-align: center;
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       color: rgba(255, 255, 255, 0.55);
       letter-spacing: 0.5px;
     }
