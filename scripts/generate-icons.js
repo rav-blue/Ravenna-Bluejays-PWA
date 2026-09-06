@@ -5,12 +5,11 @@ import path from 'path';
 async function generateIcons() {
   console.log('Generating compliant 8-bit sRGB PWA icons...');
   
-  // Use the high-resolution transparent emblem or Podium Block R as the icon source
-  const sourceImage = 'public/Podium Block R (Royal Blue).png';
-  const emblemImage = 'public/Podium Emblem Logos 3 Colors.png';
+  // Use the official RavCentral 3-color emblem logo for all icons
+  const sourceImage = 'public/Podium Emblem Logos 3 Colors.png';
   
-  // Brand colors
-  const bgColor = { r: 17, g: 45, b: 130, alpha: 1 }; // #112d82
+  // Brand colors (#112d82)
+  const bgColor = { r: 17, g: 45, b: 130, alpha: 1 };
   
   // 1. Standard Icons (purpose: "any") - Transparent background, high quality 8-bit sRGB
   await sharp(sourceImage)
