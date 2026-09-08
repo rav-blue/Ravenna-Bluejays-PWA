@@ -57,11 +57,24 @@ export const PORTAL_ITEMS: PortalItem[] = [
     featured: true,
   },
   {
+    id: 'district-staff',
+    title: 'District Staff Directory',
+    category: 'staff',
+    description: 'Superintendent, administrative & district-wide educators',
+    iconType: 'hs-staff',
+    actionUrl: 'https://www.ravennabluejays.org/district/district-staff#target=_system',
+    isModal: true,
+    modalType: 'staff',
+    badge: 'District',
+    featured: true,
+  },
+  {
     id: 'elem-staff',
     title: 'Elementary Staff Directory',
     category: 'staff',
     description: 'Ravenna Elementary teachers, admin & support team',
     iconType: 'elementary-staff',
+    actionUrl: 'https://www.ravennabluejays.org/elementary/elementary-staff#target=_system',
     isModal: true,
     modalType: 'staff',
     badge: 'Elementary',
@@ -69,10 +82,11 @@ export const PORTAL_ITEMS: PortalItem[] = [
   },
   {
     id: 'hs-staff',
-    title: 'High School & MS Staff',
+    title: 'High School Staff Directory',
     category: 'staff',
     description: 'Secondary teachers, coaches, counseling & admin',
     iconType: 'hs-staff',
+    actionUrl: 'https://www.ravennabluejays.org/high-school/high-school-staff#target=_system',
     isModal: true,
     modalType: 'staff',
     badge: 'HS / MS',
@@ -302,3 +316,9 @@ export const ANNOUNCEMENTS_PSA_DATA: AnnouncementPSA[] = [
     urgent: false,
   },
 ];
+
+export const STAFF_DIRECTORY_LINKS = {
+  district: 'https://www.ravennabluejays.org/district/district-staff#target=_system',
+  elementary: 'https://www.ravennabluejays.org/elementary/elementary-staff#target=_system',
+  highSchool: 'https://www.ravennabluejays.org/high-school/high-school-staff#target=_system',
+};

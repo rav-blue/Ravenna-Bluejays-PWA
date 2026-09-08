@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { STAFF_DIRECTORY_DATA } from '../data/portalData';
+import { STAFF_DIRECTORY_DATA, STAFF_DIRECTORY_LINKS } from '../data/portalData';
 import { KidStickFigureIcon } from './CustomIcons';
-import { X, Search, Mail, Phone, Building2, Copy, Check } from 'lucide-react';
+import { X, Search, Mail, Phone, Building2, Copy, Check, ExternalLink } from 'lucide-react';
 
 interface StaffDirectoryModalProps {
   isOpen: boolean;
@@ -156,11 +156,40 @@ export const StaffDirectoryModal: React.FC<StaffDirectoryModalProps> = ({
         </div>
 
         {/* Footer */}
-        <div className="p-4 bg-slate-50 border-t border-slate-200 flex justify-end">
+        <div className="p-4 bg-slate-50 border-t border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div className="flex items-center gap-2 flex-wrap text-xs text-slate-600">
+            <span className="font-semibold text-slate-700">Official Web:</span>
+            <a
+              href={STAFF_DIRECTORY_LINKS.district}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 text-emerald-700 hover:text-emerald-800 font-medium hover:underline"
+            >
+              District <ExternalLink size={12} />
+            </a>
+            <span className="text-slate-300">&bull;</span>
+            <a
+              href={STAFF_DIRECTORY_LINKS.elementary}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 text-emerald-700 hover:text-emerald-800 font-medium hover:underline"
+            >
+              Elementary <ExternalLink size={12} />
+            </a>
+            <span className="text-slate-300">&bull;</span>
+            <a
+              href={STAFF_DIRECTORY_LINKS.highSchool}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 text-emerald-700 hover:text-emerald-800 font-medium hover:underline"
+            >
+              High School <ExternalLink size={12} />
+            </a>
+          </div>
           <button
             id="close-staff-bottom-btn"
             onClick={onClose}
-            className="px-5 py-2 bg-slate-900 text-white rounded-xl text-sm font-bold hover:bg-slate-800 transition-colors cursor-pointer"
+            className="px-5 py-2 bg-slate-900 text-white rounded-xl text-sm font-bold hover:bg-slate-800 transition-colors cursor-pointer self-end sm:self-auto"
           >
             Close Directory
           </button>

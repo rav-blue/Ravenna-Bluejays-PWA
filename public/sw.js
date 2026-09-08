@@ -1,4 +1,4 @@
-const CACHE_NAME = 'ravcentral-v9';
+const CACHE_NAME = 'ravcentral-v10';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
