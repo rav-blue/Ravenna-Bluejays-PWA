@@ -353,11 +353,99 @@ this file.
       background: linear-gradient(180deg, #112347 0%, #0a0e19 100%);
       border: 1px solid rgba(165, 171, 189, 0.35);
       border-radius: 20px;
-      padding: 24px;
-      max-width: 380px;
+      padding: 22px 18px;
+      max-width: 440px;
+      max-height: 88vh;
+      overflow-y: auto;
       width: 100%;
       text-align: center;
       box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
+    }
+
+    .install-modal-card::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .install-modal-card::-webkit-scrollbar-track {
+      background: rgba(15, 23, 42, 0.4);
+      border-radius: 6px;
+    }
+
+    .install-modal-card::-webkit-scrollbar-thumb {
+      background: rgba(147, 197, 253, 0.3);
+      border-radius: 6px;
+    }
+
+    .ios-guide-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-bottom: 12px;
+      justify-content: center;
+    }
+
+    .ios-tab-btn {
+      background: rgba(30, 41, 59, 0.6);
+      border: 1px solid rgba(148, 163, 184, 0.25);
+      color: #94a3b8;
+      padding: 5px 9px;
+      border-radius: 8px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .ios-tab-btn:hover {
+      background: rgba(30, 58, 138, 0.4);
+      color: #e2e8f0;
+      border-color: rgba(147, 197, 253, 0.4);
+    }
+
+    .ios-tab-btn.active {
+      background: #1d4ed8;
+      border-color: #93c5fd;
+      color: #ffffff;
+      box-shadow: 0 2px 6px rgba(29, 78, 216, 0.4);
+    }
+
+    .copy-link-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      background: rgba(37, 99, 235, 0.25);
+      border: 1px solid rgba(96, 165, 250, 0.4);
+      color: #93c5fd;
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 6px;
+      transition: all 0.15s ease;
+    }
+
+    .copy-link-btn:hover {
+      background: rgba(37, 99, 235, 0.45);
+      color: #ffffff;
+    }
+
+    .ui-callout-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(147, 197, 253, 0.35);
+      padding: 2px 6px;
+      border-radius: 6px;
+      font-size: 0.76rem;
+      font-weight: 600;
+      color: #ffffff;
+      white-space: nowrap;
     }
 
     .install-modal-close {
@@ -1356,7 +1444,29 @@ this file.
         <!-- Injected dynamically based on browser/device -->
       </div>
 
-      <!-- Troubleshooting accordion for "cannot be installed" error -->
+      <!-- Troubleshooting accordion for iOS: Missing Share button or Add to Home Screen -->
+      <div class="install-troubleshoot-box" id="ios-troubleshoot-box" style="display: none;">
+        <button type="button" class="install-troubleshoot-toggle" id="ios-troubleshoot-toggle" aria-expanded="false">
+          <span>🔍 Can't find the Share button or "Add to Home Screen"?</span>
+          <svg id="ios-troubleshoot-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="install-troubleshoot-body" id="ios-troubleshoot-body" style="display: none;">
+          <p><span class="badge">Toolbar Hidden</span><strong>Safari Bottom Toolbar Disappeared</strong><br>
+          Safari auto-hides the bottom toolbar when scrolling. Simply <strong>tap the very bottom edge of your screen</strong> or swipe down slightly, and the bottom toolbar with the Share icon will pop right back up!</p>
+          <p><span class="badge">iPad Users</span><strong>Look in Top-Right Corner</strong><br>
+          On iPad (iPadOS), Apple places the Share icon in the <strong>top-right corner</strong> next to the web address bar. iPads do not have a bottom toolbar.</p>
+          <p><span class="badge">Share Sheet</span><strong>Scroll Past Contacts &amp; Apps</strong><br>
+          The Share sheet shows contacts and apps first. Scroll down past them into the vertical list of actions to find <strong>"Add to Home Screen"</strong>.</p>
+          <p><span class="badge">iOS 17 &amp; 18 Fix</span><strong>Use "Edit Actions..." at Bottom</strong><br>
+          If "Add to Home Screen" is missing, scroll to the very bottom of the Share sheet, tap <strong>"Edit Actions..."</strong>, and tap the green plus <strong>(+)</strong> next to "Add to Home Screen".</p>
+          <p><span class="badge">In-App View</span><strong>Opened from Facebook, Gmail, or Remind?</strong><br>
+          Links in social or email apps open in a restricted viewer. Tap the <strong>•••</strong> or Safari compass icon in the corner and select <strong>"Open in Safari"</strong>.</p>
+          <p><span class="badge">Older iOS</span><strong>iOS 16.3 or Earlier</strong><br>
+          Apple added Chrome/Edge home screen installation in <strong>iOS 16.4</strong>. On older iOS versions, you must use <strong>Safari</strong>.</p>
+        </div>
+      </div>
+
+      <!-- Troubleshooting accordion for Android "cannot be installed" error -->
       <div class="install-troubleshoot-box" id="install-troubleshoot-box" style="display: none;">
         <button type="button" class="install-troubleshoot-toggle" id="install-troubleshoot-toggle" aria-expanded="false">
           <span>⚠️ Getting "This app cannot be installed"?</span>
@@ -2109,11 +2219,73 @@ this file.
     function getDeviceInfo() {
       const ua = navigator.userAgent || navigator.vendor || (window.opera ? window.opera.toString() : '');
       const platform = navigator.platform || '';
-      // Detect iOS (iPhones, iPads, iPods, and iPadOS desktops with touch points)
-      const isIOS = (/iPad|iPhone|iPod/.test(ua) && !window.MSStream) || (platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+      
+      // Detect iPad (including iPadOS 13+ which reports as MacIntel with touch points)
+      const isIPad = /iPad/.test(ua) || (platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+      const isIPhone = /iPhone|iPod/.test(ua);
+      const isIOS = isIPad || isIPhone;
+      
+      // Parse exact iOS version
+      let iosVersionMajor = null;
+      let iosVersionMinor = null;
+      let iosVersionStr = '';
+      if (isIOS) {
+        const vMatch = ua.match(/(?:iPhone OS|CPU OS|Version)\s*([\d_]+)/i);
+        if (vMatch && vMatch[1]) {
+          const parts = vMatch[1].split(/[_.]/);
+          iosVersionMajor = parseInt(parts[0], 10);
+          iosVersionMinor = parseInt(parts[1] || '0', 10);
+          iosVersionStr = `${iosVersionMajor}.${iosVersionMinor}`;
+        }
+      }
+
+      // Detect browser on iOS
+      let iosBrowser = 'safari';
+      let browserDisplayName = 'Safari';
+      if (isIOS) {
+        if (/FBAN|FBAV|Instagram|Snapchat|Twitter|Line|LinkedIn|TikTok|MicroMessenger|musical_ly|Bytedance/i.test(ua) || /GSA\//i.test(ua)) {
+          iosBrowser = 'in-app';
+          browserDisplayName = 'In-App Browser (Email/Social)';
+        } else if (/CriOS/i.test(ua)) {
+          iosBrowser = 'chrome';
+          browserDisplayName = 'Google Chrome';
+        } else if (/FxiOS/i.test(ua)) {
+          iosBrowser = 'firefox';
+          browserDisplayName = 'Firefox';
+        } else if (/EdgiOS/i.test(ua)) {
+          iosBrowser = 'edge';
+          browserDisplayName = 'Microsoft Edge';
+        } else if (/OPT\//i.test(ua)) {
+          iosBrowser = 'opera';
+          browserDisplayName = 'Opera';
+        } else if (/Ddg\//i.test(ua)) {
+          iosBrowser = 'duckduckgo';
+          browserDisplayName = 'DuckDuckGo';
+        } else if (!/Safari/i.test(ua)) {
+          iosBrowser = 'in-app';
+          browserDisplayName = 'In-App Webview';
+        } else {
+          iosBrowser = 'safari';
+          browserDisplayName = 'Safari';
+        }
+      }
+
       const isAndroid = /Android/i.test(ua);
       const isSamsung = isAndroid && (/SamsungBrowser|SM-|SAMSUNG/i.test(ua));
-      return { isIOS, isAndroid, isSamsung };
+
+      return {
+        isIOS,
+        isIPad,
+        isIPhone,
+        deviceType: isIPad ? 'iPad' : (isIPhone ? 'iPhone' : (isIOS ? 'Apple Device' : (isAndroid ? 'Android' : 'Desktop'))),
+        iosVersionMajor,
+        iosVersionMinor,
+        iosVersionStr,
+        iosBrowser,
+        browserDisplayName,
+        isAndroid,
+        isSamsung
+      };
     }
 
     // PWA Install Prompt & Standalone Mode Logic
@@ -2126,6 +2298,37 @@ this file.
     const directInstallBtn = document.getElementById("direct-install-btn");
     const installStepsContent = document.getElementById("install-steps-content");
     let deferredPrompt = window.__deferredPrompt || null;
+    let selectedIosTab = null;
+
+    function copyAppLink() {
+      const url = window.location.href.split('#')[0];
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(url).then(() => {
+          showToast('✓ Link copied! Open Safari & paste');
+        }).catch(() => {
+          legacyCopy(url);
+        });
+      } else {
+        legacyCopy(url);
+      }
+    }
+
+    function legacyCopy(text) {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.focus();
+      ta.select();
+      try {
+        document.execCommand('copy');
+        showToast('✓ Link copied! Open Safari & paste');
+      } catch (e) {
+        showToast('App link: ' + text);
+      }
+      document.body.removeChild(ta);
+    }
 
     function updateInstallState() {
       if (isStandalone) {
@@ -2176,43 +2379,223 @@ this file.
       ` : '';
 
       const dev = getDeviceInfo();
-      const troubleshootBox = document.getElementById("install-troubleshoot-box");
+      const androidTroubleshootBox = document.getElementById("install-troubleshoot-box");
+      const iosTroubleshootBox = document.getElementById("ios-troubleshoot-box");
 
       if (dev.isIOS) {
-        // Hide Samsung troubleshooting completely on iOS
-        if (troubleshootBox) troubleshootBox.style.display = "none";
+        // Toggle troubleshoot boxes for iOS
+        if (androidTroubleshootBox) androidTroubleshootBox.style.display = "none";
+        if (iosTroubleshootBox) iosTroubleshootBox.style.display = "block";
+
+        // Auto-select tab if not set
+        if (!selectedIosTab) {
+          if (dev.iosBrowser === 'in-app') {
+            selectedIosTab = 'in-app-ios';
+          } else if (dev.iosBrowser === 'chrome') {
+            selectedIosTab = 'chrome-ios';
+          } else if (dev.iosBrowser === 'firefox' || dev.iosBrowser === 'edge' || dev.iosBrowser === 'opera' || dev.iosBrowser === 'duckduckgo') {
+            selectedIosTab = 'other-ios';
+          } else if (dev.isIPad) {
+            selectedIosTab = 'safari-ipad';
+          } else {
+            selectedIosTab = 'safari-iphone';
+          }
+        }
+
+        // Active tab matching indicator
+        const isMatchedToDevice = 
+          (selectedIosTab === 'safari-iphone' && !dev.isIPad && dev.iosBrowser === 'safari') ||
+          (selectedIosTab === 'safari-ipad' && dev.isIPad && dev.iosBrowser === 'safari') ||
+          (selectedIosTab === 'chrome-ios' && dev.iosBrowser === 'chrome') ||
+          (selectedIosTab === 'in-app-ios' && dev.iosBrowser === 'in-app') ||
+          (selectedIosTab === 'other-ios' && (dev.iosBrowser === 'firefox' || dev.iosBrowser === 'edge'));
+
+        // Header detection info
+        const osLabel = dev.iosVersionStr ? (dev.isIPad ? `iPadOS ${dev.iosVersionStr}` : `iOS ${dev.iosVersionStr}`) : 'iOS';
+        const detectedBadgeText = `Detected: ${dev.deviceType} • ${osLabel} • ${dev.browserDisplayName}`;
+
+        let tabContentHtml = '';
+
+        if (selectedIosTab === 'safari-iphone') {
+          tabContentHtml = `
+            <div style="text-align: left; line-height: 1.55;">
+              <div style="margin-bottom: 8px; font-weight: 700; color: #93c5fd; font-size: 0.84rem; display: flex; align-items: center; justify-content: space-between;">
+                <span>📱 iPhone &bull; Safari</span>
+                ${isMatchedToDevice ? '<span style="background: rgba(34, 197, 94, 0.2); color: #86efac; border: 1px solid rgba(134, 239, 172, 0.35); padding: 1px 6px; border-radius: 5px; font-size: 0.68rem; font-weight: 700;">✨ Matched</span>' : ''}
+              </div>
+              <ol style="padding-left: 18px; margin: 0 0 8px 0;">
+                <li style="margin-bottom: 8px;">
+                  <strong>Find the Share button:</strong> In Safari, look at the <strong>bottom center</strong> of your iPhone for the Share icon (<span class="ui-callout-badge"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg> Share</span> — square with an arrow pointing up).<br>
+                  <span style="display: block; margin-top: 4px; color: #93c5fd; font-size: 0.76rem; background: rgba(30, 58, 138, 0.35); padding: 4px 7px; border-radius: 6px;">
+                    💡 <em>Bottom bar missing? Safari hides it when you scroll. Tap the very bottom edge of your screen or scroll up to make it reappear!</em>
+                  </span>
+                </li>
+                <li style="margin-bottom: 8px;">
+                  <strong>Scroll to Add to Home Screen:</strong> In the share sheet, scroll down past contacts &amp; apps into the vertical action list. Tap <span class="ui-callout-badge">➕ Add to Home Screen</span>.<br>
+                  <span style="display: block; margin-top: 4px; color: #cbd5e1; font-size: 0.74rem;">
+                    <em>(iOS 17/18: If missing, scroll to the bottom of the share sheet, tap <strong>"Edit Actions..."</strong>, and tap ➕ next to Add to Home Screen).</em>
+                  </span>
+                </li>
+                <li style="margin-bottom: 0;">
+                  <strong>Confirm:</strong> Tap <strong>Add</strong> in the top-right corner. <strong>RavCentral</strong> is now on your home screen!
+                </li>
+              </ol>
+            </div>
+          `;
+        } else if (selectedIosTab === 'safari-ipad') {
+          tabContentHtml = `
+            <div style="text-align: left; line-height: 1.55;">
+              <div style="margin-bottom: 8px; font-weight: 700; color: #93c5fd; font-size: 0.84rem; display: flex; align-items: center; justify-content: space-between;">
+                <span>📟 iPad &bull; Safari</span>
+                ${isMatchedToDevice ? '<span style="background: rgba(34, 197, 94, 0.2); color: #86efac; border: 1px solid rgba(134, 239, 172, 0.35); padding: 1px 6px; border-radius: 5px; font-size: 0.68rem; font-weight: 700;">✨ Matched</span>' : ''}
+              </div>
+              <ol style="padding-left: 18px; margin: 0 0 8px 0;">
+                <li style="margin-bottom: 8px;">
+                  <strong>Find the Share button:</strong> On iPad, the Share icon (<span class="ui-callout-badge"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg> Share</span>) is in the <strong>top-right corner</strong> of your screen, next to the web address bar and tabs. <em>(iPads do not have a bottom toolbar).</em>
+                </li>
+                <li style="margin-bottom: 8px;">
+                  <strong>Select Home Screen:</strong> In the drop-down menu, scroll down and tap <span class="ui-callout-badge">➕ Add to Home Screen</span>.
+                </li>
+                <li style="margin-bottom: 0;">
+                  <strong>Confirm:</strong> Tap <strong>Add</strong> in the top-right corner of the popup. RavCentral will now appear on your iPad home screen!
+                </li>
+              </ol>
+            </div>
+          `;
+        } else if (selectedIosTab === 'chrome-ios') {
+          const isOldIos = dev.iosVersionMajor && dev.iosVersionMajor < 16;
+          tabContentHtml = `
+            <div style="text-align: left; line-height: 1.55;">
+              <div style="margin-bottom: 8px; font-weight: 700; color: #93c5fd; font-size: 0.84rem; display: flex; align-items: center; justify-content: space-between;">
+                <span>📱 Google Chrome on iOS</span>
+                ${isMatchedToDevice ? '<span style="background: rgba(34, 197, 94, 0.2); color: #86efac; border: 1px solid rgba(134, 239, 172, 0.35); padding: 1px 6px; border-radius: 5px; font-size: 0.68rem; font-weight: 700;">✨ Matched</span>' : ''}
+              </div>
+              ${isOldIos ? `
+                <div style="background: rgba(220, 38, 38, 0.2); border: 1px solid rgba(248, 113, 113, 0.4); border-radius: 8px; padding: 7px 10px; margin-bottom: 8px; font-size: 0.77rem; color: #fecaca;">
+                  ⚠️ <strong>iOS ${dev.iosVersionStr} Note:</strong> Apple only added home screen web app support to Chrome in <strong>iOS 16.4+</strong>. On iOS 16.3 or earlier, web apps must be installed via Safari.
+                </div>
+                <ol style="padding-left: 18px; margin: 0 0 8px 0;">
+                  <li style="margin-bottom: 8px;">Tap below to copy the link:
+                    <div style="margin-top: 5px;"><button class="copy-link-btn" onclick="copyAppLink()">📋 Copy RavCentral Link</button></div>
+                  </li>
+                  <li style="margin-bottom: 8px;">Open <strong>Safari</strong> on your device and paste into the address bar.</li>
+                  <li>Tap the <strong>Share</strong> button at the bottom and select <strong>Add to Home Screen</strong>.</li>
+                </ol>
+              ` : `
+                <div style="background: rgba(30, 58, 138, 0.35); border: 1px solid rgba(147, 197, 253, 0.35); border-radius: 8px; padding: 5px 9px; margin-bottom: 8px; font-size: 0.76rem; color: #dbeafe;">
+                  💡 <em>In Chrome, the options button may be in the <strong>bottom-right corner (•••)</strong> or at the <strong>top-right</strong> next to the address bar.</em>
+                </div>
+                <ol style="padding-left: 18px; margin: 0 0 8px 0;">
+                  <li style="margin-bottom: 8px;">
+                    <strong>Open Chrome Menu:</strong> Tap the <strong>three dots (<span class="ui-callout-badge">&bull;&bull;&bull;</span>)</strong> in the bottom-right or top-right corner. Or tap the <strong>Share</strong> icon inside Chrome's address bar.
+                  </li>
+                  <li style="margin-bottom: 8px;">
+                    <strong>Add to Home Screen:</strong> Look for <span class="ui-callout-badge">➕ Add to Home Screen</span> directly in the menu list. If you don't see it, tap <strong>Share...</strong> and then select <strong>Add to Home Screen</strong>.
+                  </li>
+                  <li style="margin-bottom: 0;">
+                    <strong>Confirm:</strong> Tap <strong>Add</strong> in the top-right corner.
+                  </li>
+                </ol>
+                <div style="margin-top: 6px; text-align: center;">
+                  <button class="copy-link-btn" onclick="copyAppLink()">📋 Or Copy Link to Open in Safari</button>
+                </div>
+              `}
+            </div>
+          `;
+        } else if (selectedIosTab === 'in-app-ios') {
+          tabContentHtml = `
+            <div style="text-align: left; line-height: 1.55;">
+              <div style="margin-bottom: 8px; font-weight: 700; color: #f59e0b; font-size: 0.84rem; display: flex; align-items: center; justify-content: space-between;">
+                <span>⚠️ In-App Browser (Gmail, FB, Remind, etc.)</span>
+                ${isMatchedToDevice ? '<span style="background: rgba(245, 158, 11, 0.2); color: #fcd34d; border: 1px solid rgba(245, 158, 11, 0.35); padding: 1px 6px; border-radius: 5px; font-size: 0.68rem; font-weight: 700;">⚠️ Detected</span>' : ''}
+              </div>
+              <p style="margin: 0 0 8px 0; font-size: 0.77rem; color: #fde68a; background: rgba(180, 83, 9, 0.25); border: 1px solid rgba(245, 158, 11, 0.35); padding: 5px 8px; border-radius: 6px;">
+                Links opened inside email or social media apps run in a restricted webview where Apple disables "Add to Home Screen".
+              </p>
+              <ol style="padding-left: 18px; margin: 0 0 8px 0;">
+                <li style="margin-bottom: 8px;">
+                  <strong>Open in Safari:</strong> Tap the <strong>three dots (<span class="ui-callout-badge">&bull;&bull;&bull;</span>)</strong> or <strong>Safari Compass (<span class="ui-callout-badge">🧭</span>)</strong> in the top-right or bottom-right corner, and select <strong>"Open in Safari"</strong>.
+                </li>
+                <li style="margin-bottom: 8px;">
+                  <strong>Or Copy &amp; Paste:</strong> Tap below to copy the link, then open the <strong>Safari</strong> app and paste into the address bar:
+                  <div style="margin-top: 5px;">
+                    <button class="copy-link-btn" onclick="copyAppLink()">📋 Copy RavCentral Link</button>
+                  </div>
+                </li>
+                <li style="margin-bottom: 0;">
+                  <strong>Once in Safari:</strong> Tap the <strong>Share</strong> button (<span class="ui-callout-badge"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg></span>) at the bottom and tap <span class="ui-callout-badge">➕ Add to Home Screen</span>.
+                </li>
+              </ol>
+            </div>
+          `;
+        } else {
+          // Firefox / Edge
+          tabContentHtml = `
+            <div style="text-align: left; line-height: 1.55;">
+              <div style="margin-bottom: 8px; font-weight: 700; color: #93c5fd; font-size: 0.84rem; display: flex; align-items: center; justify-content: space-between;">
+                <span>📱 Firefox, Edge, or Other Browser</span>
+                ${isMatchedToDevice ? '<span style="background: rgba(34, 197, 94, 0.2); color: #86efac; border: 1px solid rgba(134, 239, 172, 0.35); padding: 1px 6px; border-radius: 5px; font-size: 0.68rem; font-weight: 700;">✨ Matched</span>' : ''}
+              </div>
+              <ol style="padding-left: 18px; margin: 0 0 8px 0;">
+                <li style="margin-bottom: 8px;">
+                  <strong>Firefox:</strong> Tap the <strong>menu (<span class="ui-callout-badge">☰</span>)</strong> in the bottom-right corner &gt; tap <strong>Share</strong> &gt; tap <span class="ui-callout-badge">➕ Add to Home Screen</span>.
+                </li>
+                <li style="margin-bottom: 8px;">
+                  <strong>Microsoft Edge:</strong> Tap the <strong>three dots (<span class="ui-callout-badge">&bull;&bull;&bull;</span>)</strong> at the bottom center/right &gt; tap <strong>Share</strong> &gt; tap <span class="ui-callout-badge">➕ Add to Home Screen</span>.
+                </li>
+                <li style="margin-bottom: 0;">
+                  <strong>Option missing?</strong> Tap below to copy the link and open it in <strong>Safari</strong>:
+                  <div style="margin-top: 5px;">
+                    <button class="copy-link-btn" onclick="copyAppLink()">📋 Copy RavCentral Link</button>
+                  </div>
+                </li>
+              </ol>
+            </div>
+          `;
+        }
 
         installStepsContent.innerHTML = `
           ${iframeAlert}
-          <div style="text-align: left; margin-bottom: 10px;">
+          <div style="text-align: left; margin-bottom: 10px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 6px;">
             <span style="display: inline-block; background: rgba(59, 130, 246, 0.2); color: #93c5fd; border: 1px solid rgba(147, 197, 253, 0.35); padding: 2px 8px; border-radius: 6px; font-size: 0.72rem; font-weight: 700; text-transform: uppercase;">
-              iOS / Apple Device
+              ${detectedBadgeText}
             </span>
           </div>
-          <ol style="padding-left: 18px; margin: 0; line-height: 1.6; text-align: left;">
-            <li style="margin-bottom: 10px;">
-              In <strong>Safari</strong> (or Chrome), tap the <strong>Share</strong> button (box with upward arrow <svg style="display:inline-block;vertical-align:middle;" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>) in the toolbar.<br>
-              <div style="margin-top: 5px; color: #93c5fd; font-size: 0.78rem; background: rgba(30, 58, 138, 0.35); padding: 5px 8px; border-radius: 6px;">
-                💡 <em>Can't find Share? Several iOS browsers place options in the <strong>bottom-right corner (•••)</strong> — tap that, then select <strong>Share</strong>.</em>
-              </div>
-            </li>
-            <li style="margin-bottom: 10px;">
-              In the share menu, scroll down and tap <strong>Add to Home Screen</strong> (➕).
-            </li>
-            <li style="margin-bottom: 0;">
-              Tap <strong>Add</strong> in the top-right corner. <strong>RavCentral</strong> is now installed on your home screen!
-            </li>
-          </ol>
+
+          <!-- Interactive iOS Selector Tabs -->
+          <div class="ios-guide-tabs">
+            <button type="button" class="ios-tab-btn ${selectedIosTab === 'safari-iphone' ? 'active' : ''}" data-iostab="safari-iphone">Safari (iPhone)</button>
+            <button type="button" class="ios-tab-btn ${selectedIosTab === 'safari-ipad' ? 'active' : ''}" data-iostab="safari-ipad">Safari (iPad)</button>
+            <button type="button" class="ios-tab-btn ${selectedIosTab === 'chrome-ios' ? 'active' : ''}" data-iostab="chrome-ios">Chrome</button>
+            <button type="button" class="ios-tab-btn ${selectedIosTab === 'in-app-ios' ? 'active' : ''}" data-iostab="in-app-ios">In-App (Gmail/FB)</button>
+            <button type="button" class="ios-tab-btn ${selectedIosTab === 'other-ios' ? 'active' : ''}" data-iostab="other-ios">Firefox / Edge</button>
+          </div>
+
+          <!-- Dynamic Guide Content for Active Tab -->
+          <div style="background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(148, 163, 184, 0.2); border-radius: 10px; padding: 12px 14px;">
+            ${tabContentHtml}
+          </div>
         `;
+
+        // Bind tab click events
+        const tabBtns = installStepsContent.querySelectorAll(".ios-tab-btn");
+        tabBtns.forEach(btn => {
+          btn.addEventListener("click", () => {
+            selectedIosTab = btn.getAttribute("data-iostab");
+            renderInstallSteps();
+          });
+        });
+
       } else if (dev.isAndroid) {
         // Show Samsung/Android troubleshooting box only for Android
-        if (troubleshootBox) troubleshootBox.style.display = "block";
+        if (iosTroubleshootBox) iosTroubleshootBox.style.display = "none";
+        if (androidTroubleshootBox) androidTroubleshootBox.style.display = "block";
 
         installStepsContent.innerHTML = `
           ${iframeAlert}
           <div style="text-align: left; margin-bottom: 10px;">
             <span style="display: inline-block; background: rgba(34, 197, 94, 0.2); color: #86efac; border: 1px solid rgba(134, 239, 172, 0.35); padding: 2px 8px; border-radius: 6px; font-size: 0.72rem; font-weight: 700; text-transform: uppercase;">
-              Android Device
+              Android Device ${dev.isSamsung ? '(Samsung Galaxy)' : ''}
             </span>
           </div>
           <ol style="padding-left: 18px; margin: 0; line-height: 1.6; text-align: left;">
@@ -2229,7 +2612,8 @@ this file.
         `;
       } else {
         // Desktop / Laptop
-        if (troubleshootBox) troubleshootBox.style.display = "none";
+        if (iosTroubleshootBox) iosTroubleshootBox.style.display = "none";
+        if (androidTroubleshootBox) androidTroubleshootBox.style.display = "none";
 
         installStepsContent.innerHTML = `
           ${iframeAlert}
@@ -2295,6 +2679,20 @@ this file.
         troubleshootToggle.setAttribute("aria-expanded", isHidden ? "true" : "false");
         if (troubleshootArrow) {
           troubleshootArrow.style.transform = isHidden ? "rotate(180deg)" : "rotate(0deg)";
+        }
+      });
+    }
+
+    const iosTroubleshootToggle = document.getElementById("ios-troubleshoot-toggle");
+    const iosTroubleshootBody = document.getElementById("ios-troubleshoot-body");
+    const iosTroubleshootArrow = document.getElementById("ios-troubleshoot-arrow");
+    if (iosTroubleshootToggle && iosTroubleshootBody) {
+      iosTroubleshootToggle.addEventListener('click', () => {
+        const isHidden = iosTroubleshootBody.style.display === "none";
+        iosTroubleshootBody.style.display = isHidden ? "block" : "none";
+        iosTroubleshootToggle.setAttribute("aria-expanded", isHidden ? "true" : "false");
+        if (iosTroubleshootArrow) {
+          iosTroubleshootArrow.style.transform = isHidden ? "rotate(180deg)" : "rotate(0deg)";
         }
       });
     }
