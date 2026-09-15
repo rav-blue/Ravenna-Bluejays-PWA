@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { PORTAL_ITEMS } from './data/portalData';
 import { PortalItem } from './types';
 import { Header } from './components/Header';
@@ -25,8 +25,33 @@ export default function App() {
   const [searchTerm, setSearchTerm] = useState('');
   const [activeCategory, setActiveCategory] = useState('all');
 
-  // Modal States
+  // Modal States with browser back button support
   const [activeModal, setActiveModal] = useState<string | null>(null);
+
+  const openModal = (modalType: string) => {
+    setActiveModal(modalType);
+    window.history.pushState({ modal: modalType }, '', `#modal-${modalType}`);
+  };
+
+  const closeModal = () => {
+    if (window.history.state && window.history.state.modal) {
+      window.history.back();
+    } else {
+      setActiveModal(null);
+    }
+  };
+
+  useEffect(() => {
+    const handlePopState = (e: PopStateEvent) => {
+      if (e.state && e.state.modal) {
+        setActiveModal(e.state.modal);
+      } else {
+        setActiveModal(null);
+      }
+    };
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
 
   // Filter Portal Items
   const filteredItems = PORTAL_ITEMS.filter((item) => {
@@ -41,7 +66,7 @@ export default function App() {
 
   const handleCardClick = (item: PortalItem) => {
     if (item.isModal && item.modalType) {
-      setActiveModal(item.modalType);
+      openModal(item.modalType);
     } else if (item.actionUrl) {
       window.open(item.actionUrl, '_blank', 'noopener,noreferrer');
     }
@@ -72,7 +97,7 @@ export default function App() {
           <div className="grid grid-cols-2 xs:grid-cols-3 sm:grid-cols-4 md:grid-cols-7 gap-2.5 sm:gap-3">
             {/* 1. Menu Icon Shortcut */}
             <button
-              onClick={() => setActiveModal('menu')}
+              onClick={() => openModal('menu')}
               className="p-3 rounded-2xl bg-amber-50 hover:bg-amber-100/80 border border-amber-200 flex flex-col items-center justify-center text-center transition-all hover:scale-[1.02] cursor-pointer"
             >
               <CafeteriaMenuIcon size={28} className="text-amber-600 mb-1" />
@@ -82,7 +107,7 @@ export default function App() {
 
             {/* 2. Infinite Campus - Main IC */}
             <button
-              onClick={() => setActiveModal('campus')}
+              onClick={() => openModal('campus')}
               className="p-3 rounded-2xl bg-lime-50 hover:bg-lime-100/80 border border-lime-200 flex flex-col items-center justify-center text-center transition-all hover:scale-[1.02] cursor-pointer"
             >
               <ICIcon size={28} className="text-lime-700 mb-1" />
@@ -92,7 +117,7 @@ export default function App() {
 
             {/* 3. IC - Student */}
             <button
-              onClick={() => setActiveModal('campus')}
+              onClick={() => openModal('campus')}
               className="p-3 rounded-2xl bg-sky-50 hover:bg-sky-100/80 border border-sky-200 flex flex-col items-center justify-center text-center transition-all hover:scale-[1.02] cursor-pointer"
             >
               <ICStudentIcon size={28} className="text-sky-600 mb-1" />
@@ -102,7 +127,7 @@ export default function App() {
 
             {/* 4. IC - Guardian */}
             <button
-              onClick={() => setActiveModal('campus')}
+              onClick={() => openModal('campus')}
               className="p-3 rounded-2xl bg-indigo-50 hover:bg-indigo-100/80 border border-indigo-200 flex flex-col items-center justify-center text-center transition-all hover:scale-[1.02] cursor-pointer"
             >
               <ICGuardianIcon size={28} className="text-indigo-700 mb-1" />
@@ -112,7 +137,7 @@ export default function App() {
 
             {/* 5. Parent Resources / PSA */}
             <button
-              onClick={() => setActiveModal('parent')}
+              onClick={() => openModal('parent')}
               className="p-3 rounded-2xl bg-rose-50 hover:bg-rose-100/80 border border-rose-200 flex flex-col items-center justify-center text-center transition-all hover:scale-[1.02] cursor-pointer"
             >
               <SideMegaphoneIcon size={28} className="text-rose-600 mb-1" />
@@ -211,14 +236,14 @@ export default function App() {
 
           <div className="flex flex-wrap items-center gap-3 justify-center">
             <button
-              onClick={() => setActiveModal('phone')}
+              onClick={() => openModal('phone')}
               className="px-4 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl text-xs font-bold flex items-center gap-2 transition-all cursor-pointer shadow-md"
             >
               <KidStickFigurePhoneIcon size={20} color="#ffffff" />
               <span>Call Elementary</span>
             </button>
             <button
-              onClick={() => setActiveModal('campus')}
+              onClick={() => openModal('campus')}
               className="px-4 py-2.5 bg-blue-600 hover:bg-blue-500 text-white rounded-xl text-xs font-bold flex items-center gap-2 transition-all cursor-pointer shadow-md"
             >
               <ICIcon size={20} color="#ffffff" />
@@ -234,12 +259,12 @@ export default function App() {
       </footer>
 
       {/* Interactive Modals */}
-      <MenuModal isOpen={activeModal === 'menu'} onClose={() => setActiveModal(null)} />
-      <InfiniteCampusModal isOpen={activeModal === 'campus'} onClose={() => setActiveModal(null)} />
-      <ParentResourcesModal isOpen={activeModal === 'parent'} onClose={() => setActiveModal(null)} />
-      <StaffDirectoryModal isOpen={activeModal === 'staff'} onClose={() => setActiveModal(null)} />
-      <CallUsModal isOpen={activeModal === 'phone'} onClose={() => setActiveModal(null)} />
-      <AthleticsModal isOpen={activeModal === 'athletics'} onClose={() => setActiveModal(null)} />
+      <MenuModal isOpen={activeModal === 'menu'} onClose={closeModal} />
+      <InfiniteCampusModal isOpen={activeModal === 'campus'} onClose={closeModal} />
+      <ParentResourcesModal isOpen={activeModal === 'parent'} onClose={closeModal} />
+      <StaffDirectoryModal isOpen={activeModal === 'staff'} onClose={closeModal} />
+      <CallUsModal isOpen={activeModal === 'phone'} onClose={closeModal} />
+      <AthleticsModal isOpen={activeModal === 'athletics'} onClose={closeModal} />
     </div>
   );
 }

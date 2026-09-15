@@ -6,8 +6,9 @@ To modify or update any button links in the future, edit the target URLs listed
 below or update the DATA_CONFIG object inside the <script> block at the bottom of
 this file.
 
-1. District Calendar (calendar icon):
-   - Target URL: https://www.gobound.com/widgets/74d59a606dec43c2bd7d#target=_system
+1. Calendars (calendar icon - Subgrid):
+   - Bound Calendar (Bound icon):              https://www.gobound.com/widgets/74d59a606dec43c2bd7d#target=_system
+   - Other Calendars (calendar icon):          https://www.ravennabluejays.org/district/calendars#target=_system
 
 2. Menu (food icon):
    - Target URL: https://calendar.google.com/calendar/embed?src=ravennabluejays.org_uhkvu6jui8m6btfrnuv3bim7c4%40group.calendar.google.com&ctz=America%2FChicago&mode=AGENDA
@@ -931,6 +932,19 @@ this file.
       fill: none;
     }
 
+    .grid-icon svg.vector-badge-svg,
+    .grid-icon svg.vector-badge-svg path {
+      stroke: none !important;
+      stroke-width: 0 !important;
+    }
+
+    .grid-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      border-radius: 6px;
+    }
+
     /* Stacked Clean White Text Label */
     .grid-label {
       font-size: clamp(0.74rem, 2.4vw, 0.86rem);
@@ -1343,7 +1357,7 @@ this file.
       </div>
 
       <!-- Troubleshooting accordion for "cannot be installed" error -->
-      <div class="install-troubleshoot-box">
+      <div class="install-troubleshoot-box" id="install-troubleshoot-box" style="display: none;">
         <button type="button" class="install-troubleshoot-toggle" id="install-troubleshoot-toggle" aria-expanded="false">
           <span>⚠️ Getting "This app cannot be installed"?</span>
           <svg id="troubleshoot-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
@@ -1406,9 +1420,21 @@ this file.
       mainGrid: [
         {
           id: "calendar",
-          title: "District Calendar",
+          title: "Calendars",
           icon: `<svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>`,
-          url: "https://www.gobound.com/widgets/74d59a606dec43c2bd7d#target=_system"
+          hasSubgrid: true,
+          items: [
+            {
+              title: "Bound Calendar",
+              icon: `<div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: #ffffff; border-radius: 8px; padding: 2.5px; box-shadow: 0 2px 6px rgba(0,0,0,0.35);"><svg class="vector-badge-svg" viewBox="0 0 512 512" style="width: 100%; height: 100%; display: block;"><defs><linearGradient id="boundTealSub" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#70c487"/><stop offset="40%" stop-color="#2bb68d"/><stop offset="70%" stop-color="#198285"/><stop offset="100%" stop-color="#0b5468"/></linearGradient></defs><path d="M 12 72 L 156 72 C 166 72, 175 76, 182 83 L 316 238 C 328 250, 328 262, 316 274 L 182 429 C 175 436, 166 440, 156 440 L 12 440 C 6 440, 0 434, 0 428 L 0 84 C 0 78, 6 72, 12 72 Z" fill="url(#boundTealSub)"/><path d="M 218 72 L 404 72 C 462 72, 508 116, 508 174 C 508 214, 484 246, 452 256 C 490 268, 512 302, 512 344 C 512 400, 466 440, 408 440 L 218 440 C 210 440, 204 435, 200 428 L 348 266 C 354 260, 354 252, 348 246 L 200 84 C 204 77, 210 72, 218 72 Z" fill="#0c1f38"/></svg></div>`,
+              url: "https://www.gobound.com/widgets/74d59a606dec43c2bd7d#target=_system"
+            },
+            {
+              title: "Other Calendars",
+              icon: `<svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>`,
+              url: "https://www.ravennabluejays.org/district/calendars#target=_system"
+            }
+          ]
         },
         {
           id: "menu",
@@ -1608,8 +1634,11 @@ this file.
     }
 
     // Render Main 3x3 Grid
-    function renderMainGrid() {
+    function renderMainGrid(pushHistory = false) {
       currentView = "main";
+      if (pushHistory) {
+        window.history.pushState({ view: "main" }, '', window.location.pathname + window.location.search);
+      }
       let html = `<div class="grid-3x3 fade-enter">`;
 
       DATA_CONFIG.mainGrid.forEach(item => {
@@ -1634,7 +1663,7 @@ this file.
           if (!item) return;
 
           if (item.hasSubgrid) {
-            renderSubgrid(item);
+            renderSubgrid(item, true);
           } else if (item.url) {
             openLink(item.title, item.url);
           }
@@ -1643,8 +1672,11 @@ this file.
     }
 
     // Render Subgrid Layout
-    function renderSubgrid(parentItem) {
+    function renderSubgrid(parentItem, pushHistory = true) {
       currentView = parentItem.id;
+      if (pushHistory) {
+        window.history.pushState({ view: parentItem.id }, '', '#' + parentItem.id);
+      }
       let html = `
         <div class="fade-enter" style="width: 100%;">
           <div class="subgrid-nav">
@@ -1701,9 +1733,13 @@ this file.
 
       viewArea.innerHTML = html;
 
-      // Back Button Listener
+      // Back Button Listener - Go back in history or render main grid
       document.getElementById("back-to-main").addEventListener("click", () => {
-        renderMainGrid();
+        if (window.history.state && window.history.state.view && window.history.state.view !== 'main') {
+          window.history.back();
+        } else {
+          renderMainGrid(false);
+        }
       });
 
       // Subgrid Item Listener
@@ -1819,10 +1855,15 @@ this file.
         resetZoom();
         imageViewerModal.style.display = "flex";
         document.body.style.overflow = "hidden";
+        window.history.pushState({ view: 'image-viewer' }, '', '#image-viewer');
       }
     }
 
     function closeImageViewer() {
+      if (window.history.state && window.history.state.view === 'image-viewer') {
+        window.history.back();
+        return;
+      }
       if (imageViewerModal) {
         imageViewerModal.style.display = "none";
         document.body.style.overflow = "";
@@ -1830,7 +1871,7 @@ this file.
       }
       // Return to main screen of the app
       if (currentView !== "main") {
-        renderMainGrid();
+        renderMainGrid(false);
       }
     }
 
@@ -2011,11 +2052,44 @@ this file.
       }
     });
 
-    // Hide Splash Screen
+    // Global Popstate Listener for Device Back Button & Subgrid Navigation
+    window.addEventListener("popstate", (e) => {
+      // 1. Close image viewer if open
+      if (imageViewerModal && imageViewerModal.style.display !== "none") {
+        imageViewerModal.style.display = "none";
+        document.body.style.overflow = "";
+        resetZoom();
+      }
+
+      // 2. Close install modal if open
+      if (installModal && installModal.style.display !== "none") {
+        installModal.style.display = "none";
+      }
+
+      // 3. Inspect history target state
+      const stateView = e.state ? e.state.view : null;
+      const hashView = window.location.hash.replace(/^#/, '');
+      const target = stateView || hashView || 'main';
+
+      if (target === 'main' || !target || target === 'image-viewer' || target === 'install-modal') {
+        renderMainGrid(false);
+      } else {
+        const item = DATA_CONFIG.mainGrid.find(i => i.id === target);
+        if (item && item.hasSubgrid) {
+          renderSubgrid(item, false);
+        } else {
+          renderMainGrid(false);
+        }
+      }
+    });
+
+    // Hide Splash Screen & Initialize History Stack
     window.addEventListener("load", () => {
       setTimeout(() => {
         splashScreen.classList.add("hidden");
-        renderMainGrid();
+        // Establish initial history entry so device back button closes app from main screen
+        window.history.replaceState({ view: 'main' }, '', window.location.pathname + window.location.search);
+        renderMainGrid(false);
       }, 600);
     });
 
@@ -2031,10 +2105,19 @@ this file.
       });
     }
 
+    // Device Detection Helper
+    function getDeviceInfo() {
+      const ua = navigator.userAgent || navigator.vendor || (window.opera ? window.opera.toString() : '');
+      const platform = navigator.platform || '';
+      // Detect iOS (iPhones, iPads, iPods, and iPadOS desktops with touch points)
+      const isIOS = (/iPad|iPhone|iPod/.test(ua) && !window.MSStream) || (platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+      const isAndroid = /Android/i.test(ua);
+      const isSamsung = isAndroid && (/SamsungBrowser|SM-|SAMSUNG/i.test(ua));
+      return { isIOS, isAndroid, isSamsung };
+    }
+
     // PWA Install Prompt & Standalone Mode Logic
     const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
-    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-    const isMac = /Macintosh/.test(navigator.userAgent);
     const installBtn = document.getElementById("pwa-install-btn");
     const installModal = document.getElementById("install-modal");
     const installModalCloseBtn = document.getElementById("install-modal-close-btn");
@@ -2092,34 +2175,79 @@ this file.
         </div>
       ` : '';
 
-      const isAndroid = /Android/i.test(navigator.userAgent);
+      const dev = getDeviceInfo();
+      const troubleshootBox = document.getElementById("install-troubleshoot-box");
 
-      if (isIOS) {
+      if (dev.isIOS) {
+        // Hide Samsung troubleshooting completely on iOS
+        if (troubleshootBox) troubleshootBox.style.display = "none";
+
         installStepsContent.innerHTML = `
           ${iframeAlert}
-          <ol>
-            <li>Tap the <strong>Share</strong> button (box with upward arrow <svg style="display:inline-block;vertical-align:middle;" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>) in Safari.</li>
-            <li>Scroll down and tap <strong>Add to Home Screen</strong> (➕).</li>
-            <li>Tap <strong>Add</strong> in the top-right corner.</li>
+          <div style="text-align: left; margin-bottom: 10px;">
+            <span style="display: inline-block; background: rgba(59, 130, 246, 0.2); color: #93c5fd; border: 1px solid rgba(147, 197, 253, 0.35); padding: 2px 8px; border-radius: 6px; font-size: 0.72rem; font-weight: 700; text-transform: uppercase;">
+              iOS / Apple Device
+            </span>
+          </div>
+          <ol style="padding-left: 18px; margin: 0; line-height: 1.6; text-align: left;">
+            <li style="margin-bottom: 10px;">
+              In <strong>Safari</strong> (or Chrome), tap the <strong>Share</strong> button (box with upward arrow <svg style="display:inline-block;vertical-align:middle;" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>) in the toolbar.<br>
+              <div style="margin-top: 5px; color: #93c5fd; font-size: 0.78rem; background: rgba(30, 58, 138, 0.35); padding: 5px 8px; border-radius: 6px;">
+                💡 <em>Can't find Share? Several iOS browsers place options in the <strong>bottom-right corner (•••)</strong> — tap that, then select <strong>Share</strong>.</em>
+              </div>
+            </li>
+            <li style="margin-bottom: 10px;">
+              In the share menu, scroll down and tap <strong>Add to Home Screen</strong> (➕).
+            </li>
+            <li style="margin-bottom: 0;">
+              Tap <strong>Add</strong> in the top-right corner. <strong>RavCentral</strong> is now installed on your home screen!
+            </li>
           </ol>
         `;
-      } else if (isAndroid) {
+      } else if (dev.isAndroid) {
+        // Show Samsung/Android troubleshooting box only for Android
+        if (troubleshootBox) troubleshootBox.style.display = "block";
+
         installStepsContent.innerHTML = `
           ${iframeAlert}
-          <ol>
-            <li>Tap the Chrome menu (<strong>&vellip;</strong>) in the top-right corner.</li>
-            <li>Select <strong>Install app</strong> (or <strong>Add to Home screen</strong>).</li>
-            <li>If prompted, tap <strong>Install</strong>.</li>
-            <li style="margin-top: 8px; color: #93c5fd; font-size: 0.8rem; background: rgba(30, 58, 138, 0.3); padding: 6px 8px; border-radius: 6px;">💡 <strong>Trouble installing?</strong> Tap <strong>&vellip; &gt; Add to Home screen</strong> to install the standalone app immediately without Play Store restrictions!</li>
+          <div style="text-align: left; margin-bottom: 10px;">
+            <span style="display: inline-block; background: rgba(34, 197, 94, 0.2); color: #86efac; border: 1px solid rgba(134, 239, 172, 0.35); padding: 2px 8px; border-radius: 6px; font-size: 0.72rem; font-weight: 700; text-transform: uppercase;">
+              Android Device
+            </span>
+          </div>
+          <ol style="padding-left: 18px; margin: 0; line-height: 1.6; text-align: left;">
+            <li style="margin-bottom: 10px;">
+              Tap the <strong>Install App Now</strong> button above (if shown).
+            </li>
+            <li style="margin-bottom: 10px;">
+              Or tap the Chrome / Samsung Internet menu (<strong>&vellip;</strong> three dots in the top-right corner) and select <strong>Install app</strong> or <strong>Add to Home screen</strong>.
+            </li>
+            <li style="margin-bottom: 0;">
+              Tap <strong>Install</strong> or <strong>Add</strong> to complete setup.
+            </li>
           </ol>
         `;
       } else {
+        // Desktop / Laptop
+        if (troubleshootBox) troubleshootBox.style.display = "none";
+
         installStepsContent.innerHTML = `
           ${iframeAlert}
-          <ol>
-            <li>Look for the <strong>Install icon</strong> (⊕ or ⬇) in the right side of Chrome's address bar.</li>
-            <li>Or tap the Chrome menu (<strong>&vellip;</strong>) &gt; select <strong>Install RavCentral</strong>.</li>
-            <li>Click <strong>Install</strong> to complete installation.</li>
+          <div style="text-align: left; margin-bottom: 10px;">
+            <span style="display: inline-block; background: rgba(148, 163, 184, 0.2); color: #cbd5e1; border: 1px solid rgba(203, 213, 225, 0.35); padding: 2px 8px; border-radius: 6px; font-size: 0.72rem; font-weight: 700; text-transform: uppercase;">
+              Desktop Browser
+            </span>
+          </div>
+          <ol style="padding-left: 18px; margin: 0; line-height: 1.6; text-align: left;">
+            <li style="margin-bottom: 10px;">
+              Look for the <strong>Install icon</strong> (⊕ or ⬇) in the right side of Chrome's address bar.
+            </li>
+            <li style="margin-bottom: 10px;">
+              Or tap the browser menu (<strong>&vellip;</strong>) &gt; select <strong>Install RavCentral</strong>.
+            </li>
+            <li style="margin-bottom: 0;">
+              Click <strong>Install</strong> to add RavCentral to your desktop.
+            </li>
           </ol>
         `;
       }
@@ -2127,17 +2255,23 @@ this file.
 
     function openInstallModal() {
       renderInstallSteps();
-      if (deferredPrompt && installActionContainer) {
+      const dev = getDeviceInfo();
+      if (!dev.isIOS && deferredPrompt && installActionContainer) {
         installActionContainer.style.display = "block";
       } else if (installActionContainer) {
         installActionContainer.style.display = "none";
       }
       if (installModal) {
         installModal.style.display = "flex";
+        window.history.pushState({ view: 'install-modal' }, '', '#install-modal');
       }
     }
 
     function closeInstallModal() {
+      if (window.history.state && window.history.state.view === 'install-modal') {
+        window.history.back();
+        return;
+      }
       if (installModal) {
         installModal.style.display = "none";
       }
@@ -2166,6 +2300,13 @@ this file.
     }
 
     async function triggerPrompt() {
+      const dev = getDeviceInfo();
+      if (dev.isIOS) {
+        // iOS does not support programmatic prompt; open the tailored iOS guide immediately
+        openInstallModal();
+        return;
+      }
+
       if (deferredPrompt) {
         try {
           deferredPrompt.prompt();
